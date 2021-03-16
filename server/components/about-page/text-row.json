@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_about_page_text_rows",
+  "info": {
+    "name": "Text_Row",
+    "icon": "pager",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Description_English": {
+      "type": "text"
+    },
+    "Description_Hebrew": {
+      "type": "text"
+    }
+  }
+}

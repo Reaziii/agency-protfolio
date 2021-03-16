@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_home_page_home_sliders",
+  "info": {
+    "name": "Home_Slider",
+    "icon": "angle-double-right",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Company_Slogan_English": {
+      "type": "string"
+    },
+    "Button_Text_English": {
+      "type": "string"
+    },
+    "Button_Link": {
+      "type": "string"
+    },
+    "Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Company_Slogan_Hebrew": {
+      "type": "string"
+    },
+    "Button_Text_Hebrew": {
+      "type": "string"
+    }
+  }
+}

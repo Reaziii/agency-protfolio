@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "useful_links",
+  "info": {
+    "name": "Useful Links",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Link": {
+      "type": "string"
+    },
+    "Name_Hebrew": {
+      "type": "string"
+    },
+    "Name_English": {
+      "type": "string"
+    }
+  }
+}

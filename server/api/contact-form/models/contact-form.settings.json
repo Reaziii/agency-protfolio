@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_forms",
+  "info": {
+    "name": "Contact Form"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Form_Id": {
+      "type": "string"
+    }
+  }
+}

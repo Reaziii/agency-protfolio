@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_home_page_client_logos",
+  "info": {
+    "name": "Client_Logos",
+    "icon": "photo-video"
+  },
+  "options": {},
+  "attributes": {
+    "Images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    }
+  }
+}

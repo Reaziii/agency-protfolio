@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_pricing_page_price_boxes",
+  "info": {
+    "name": "Price_Box",
+    "icon": "dollar-sign",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Package_Name_English": {
+      "type": "string"
+    },
+    "Price": {
+      "type": "float"
+    },
+    "Features_English": {
+      "type": "text"
+    },
+    "Purchase_Button_Text_English": {
+      "type": "string"
+    },
+    "Package_Name_Hebrew": {
+      "type": "string"
+    },
+    "Features_Hebrew": {
+      "type": "text"
+    },
+    "Purchase_Button_Text_Hebrew": {
+      "type": "string"
+    },
+    "Two_Year_Package_Price": {
+      "type": "float"
+    },
+    "Three_Year_Package_Price": {
+      "type": "float"
+    },
+    "Retail_Price": {
+      "type": "float"
+    }
+  }
+}

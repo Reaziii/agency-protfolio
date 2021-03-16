@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_contact_page_gmap_locations",
+  "info": {
+    "name": "GmapLocation",
+    "icon": "search-location"
+  },
+  "options": {},
+  "attributes": {
+    "Lattitude": {
+      "type": "string"
+    },
+    "Longitude": {
+      "type": "string"
+    }
+  }
+}

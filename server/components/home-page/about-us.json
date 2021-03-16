@@ -1,0 +1,43 @@
+{
+  "collectionName": "components_home_page_about_uses",
+  "info": {
+    "name": "About_Us",
+    "icon": "info-circle",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "About_Small_Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Title_English": {
+      "type": "string"
+    },
+    "Description_English": {
+      "type": "text"
+    },
+    "Button_Text_English": {
+      "type": "string"
+    },
+    "Button_Link": {
+      "type": "string"
+    },
+    "Title_Hebrew": {
+      "type": "string"
+    },
+    "Description_Hebrew": {
+      "type": "text"
+    },
+    "Button_Text_Hebrew": {
+      "type": "string"
+    }
+  }
+}

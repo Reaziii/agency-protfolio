@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "name": "Posts",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title_English": {
+      "type": "string"
+    },
+    "Description_English": {
+      "type": "richtext"
+    },
+    "Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "categories": {
+      "collection": "categories",
+      "via": "posts"
+    },
+    "Slug": {
+      "type": "string"
+    },
+    "Title_Hebrew": {
+      "type": "string"
+    },
+    "Description_Hebrew": {
+      "type": "richtext"
+    },
+    "Custom_Date": {
+      "type": "date"
+    }
+  }
+}

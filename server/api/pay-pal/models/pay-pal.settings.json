@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "pay_pals",
+  "info": {
+    "name": "PayPal"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Client_Id": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_faq_page_faq_cloud_services",
+  "info": {
+    "name": "FAQ_Cloud_Service",
+    "icon": "question",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Question_English": {
+      "type": "string"
+    },
+    "Answer_English": {
+      "type": "text"
+    },
+    "Question_Hebrew": {
+      "type": "string"
+    },
+    "Answer_Hebrew": {
+      "type": "text"
+    }
+  }
+}

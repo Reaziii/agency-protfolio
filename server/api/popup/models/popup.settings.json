@@ -1,0 +1,39 @@
+{
+  "kind": "singleType",
+  "collectionName": "popups",
+  "info": {
+    "name": "Popup",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Heading_English": {
+      "type": "string"
+    },
+    "Description_English": {
+      "type": "text"
+    },
+    "Button_Text_English": {
+      "type": "string"
+    },
+    "Button_Link": {
+      "type": "string"
+    },
+    "Interval": {
+      "type": "string"
+    },
+    "Heading_Hebrew": {
+      "type": "string"
+    },
+    "Description_Hebrew": {
+      "type": "text"
+    },
+    "Button_Text_Hebrew": {
+      "type": "string"
+    }
+  }
+}

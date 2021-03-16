@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_faq_page_faq_items",
+  "info": {
+    "name": "FAQ_Item",
+    "icon": "question-circle",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Question_English": {
+      "type": "string"
+    },
+    "Answer_English": {
+      "type": "text"
+    },
+    "Question_Hebrew": {
+      "type": "string"
+    },
+    "Answer_Hebrew": {
+      "type": "text"
+    },
+    "Web_Hosting": {
+      "type": "boolean"
+    },
+    "Cloud_Services": {
+      "type": "boolean"
+    }
+  }
+}

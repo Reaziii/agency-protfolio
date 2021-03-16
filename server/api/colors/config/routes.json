@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/colors",
+      "handler": "colors.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/colors",
+      "handler": "colors.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/colors",
+      "handler": "colors.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

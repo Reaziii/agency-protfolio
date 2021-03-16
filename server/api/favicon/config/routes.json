@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/favicon",
+      "handler": "favicon.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/favicon",
+      "handler": "favicon.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/favicon",
+      "handler": "favicon.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

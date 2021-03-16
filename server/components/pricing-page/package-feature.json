@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_pricing_page_package_features",
+  "info": {
+    "name": "Package-Feature",
+    "icon": "asterisk",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Feature_Name_English": {
+      "type": "string"
+    },
+    "Quota": {
+      "type": "string"
+    },
+    "Check_Mark": {
+      "type": "boolean"
+    },
+    "Minus_Check": {
+      "type": "boolean"
+    },
+    "Feature_Name_Hebrew": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_banner_banners",
+  "info": {
+    "name": "Banner",
+    "icon": "file-image",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title_English": {
+      "type": "string"
+    },
+    "Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "title_Hebrew": {
+      "type": "string"
+    }
+  }
+}

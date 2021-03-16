@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_client_review_client_reviews",
+  "info": {
+    "name": "Client_Review",
+    "icon": "star-half-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Review_Text_English": {
+      "type": "text"
+    },
+    "Name_English": {
+      "type": "string"
+    },
+    "Designation_English": {
+      "type": "string"
+    },
+    "Profile_Picture": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Review_Text_Hebrew": {
+      "type": "text"
+    },
+    "Name_Hebrew": {
+      "type": "string"
+    },
+    "Designation_Hebrew": {
+      "type": "string"
+    }
+  }
+}

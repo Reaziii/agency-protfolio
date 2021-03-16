@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_home_page_key_features",
+  "info": {
+    "name": "Key_Feature",
+    "icon": "key",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Icon": {
+      "type": "string"
+    },
+    "Name_English": {
+      "type": "string"
+    },
+    "Description_English": {
+      "type": "text"
+    },
+    "Name_Hebrew": {
+      "type": "string"
+    },
+    "Description_Hebrew": {
+      "type": "text"
+    }
+  }
+}

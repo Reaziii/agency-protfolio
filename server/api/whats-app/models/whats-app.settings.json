@@ -1,0 +1,42 @@
+{
+  "kind": "singleType",
+  "collectionName": "whats_apps",
+  "info": {
+    "name": "WhatsApp",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Phone": {
+      "type": "integer"
+    },
+    "Reply_Delay_Text_English": {
+      "type": "string"
+    },
+    "Reply_Delay_Text_Hebrew": {
+      "type": "string"
+    },
+    "CompanyName_English": {
+      "type": "string"
+    },
+    "CompanyName_Hebrew": {
+      "type": "string"
+    },
+    "Initial_Message_English": {
+      "type": "text"
+    },
+    "Initial_Message_Hebrew": {
+      "type": "text"
+    },
+    "Sendbutton_Text_English": {
+      "type": "string"
+    },
+    "Sendbutton_Text_Hebrew": {
+      "type": "string"
+    }
+  }
+}

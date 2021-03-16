@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "name": "Pages",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Page_Link": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "regex": "^\\S*$"
+    },
+    "Section": {
+      "type": "dynamiczone",
+      "components": [
+        "home-page.service",
+        "home-page.home-banner",
+        "home-page.about-us",
+        "home-page.client-logos",
+        "home-page.key-feature",
+        "home-page.connection-row",
+        "home-page.home-slider",
+        "about-page.achievement-item",
+        "about-page.text-row",
+        "banner.banner",
+        "client-reviews.client-reviews",
+        "pricing-page.price-box",
+        "contact-page.contact-item",
+        "faq-page.faq-item",
+        "services-page.icon-row",
+        "services-page.details-row",
+        "contact-page.contact-form",
+        "contact-page.gmap-location",
+        "faq-page.faq-cloud-service"
+      ]
+    },
+    "Title": {
+      "type": "string"
+    }
+  }
+}

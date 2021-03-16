@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/popup",
+      "handler": "popup.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/popup",
+      "handler": "popup.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/popup",
+      "handler": "popup.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

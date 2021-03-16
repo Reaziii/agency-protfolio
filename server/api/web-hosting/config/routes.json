@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/web-hosting",
+      "handler": "web-hosting.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/web-hosting",
+      "handler": "web-hosting.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/web-hosting",
+      "handler": "web-hosting.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

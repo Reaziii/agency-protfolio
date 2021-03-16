@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_contact_page_contact_items",
+  "info": {
+    "name": "Contact_Item",
+    "icon": "book",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Icon": {
+      "type": "string"
+    },
+    "Name_English": {
+      "type": "string"
+    },
+    "Details_English": {
+      "type": "text"
+    },
+    "Name_Hebrew": {
+      "type": "string"
+    },
+    "Details_Hebrew": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_services_page_icon_rows",
+  "info": {
+    "name": "Icon_Row",
+    "icon": "air-freshener",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Icon": {
+      "type": "string"
+    },
+    "Name_English": {
+      "type": "string"
+    },
+    "Name_Hebrew": {
+      "type": "string"
+    }
+  }
+}

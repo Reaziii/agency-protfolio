@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "web_hostings",
+  "info": {
+    "name": "Hosting Extras",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "SSL_Premium_Price": {
+      "type": "float"
+    },
+    "Dedicated_IP_Price": {
+      "type": "float"
+    }
+  }
+}

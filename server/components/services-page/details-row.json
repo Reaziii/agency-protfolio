@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_services_page_details_rows",
+  "info": {
+    "name": "Details_Row",
+    "icon": "address-card",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Title_English": {
+      "type": "string"
+    },
+    "Description_English": {
+      "type": "text"
+    },
+    "Link": {
+      "type": "string"
+    },
+    "Title_Hebrew": {
+      "type": "string"
+    },
+    "Description_Hebrew": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "additional_links",
+  "info": {
+    "name": "Additional Links",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Link": {
+      "type": "string"
+    },
+    "Name_English": {
+      "type": "string"
+    },
+    "Name_Hebrew": {
+      "type": "string"
+    }
+  }
+}

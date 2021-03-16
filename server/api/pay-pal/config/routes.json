@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/pay-pal",
+      "handler": "pay-pal.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/pay-pal",
+      "handler": "pay-pal.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/pay-pal",
+      "handler": "pay-pal.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

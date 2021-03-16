@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_home_page_home_banners",
+  "info": {
+    "name": "Home_Banner",
+    "icon": "home",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Banner_Image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "Banner_Text_English": {
+      "type": "string"
+    },
+    "Button_Text_English": {
+      "type": "string"
+    },
+    "Button_Link": {
+      "type": "string"
+    },
+    "Banner_Text_Hebrew": {
+      "type": "string"
+    },
+    "Button_Text_Hebrew": {
+      "type": "string"
+    }
+  }
+}

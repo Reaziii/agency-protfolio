@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_contact_page_contact_forms",
+  "info": {
+    "name": "Contact_Form",
+    "icon": "diagnoses",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Contact_Button_Text_English": {
+      "type": "string"
+    },
+    "Contact_Button_Text_Hebrew": {
+      "type": "string"
+    }
+  }
+}

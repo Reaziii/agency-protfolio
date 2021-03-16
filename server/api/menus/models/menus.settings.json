@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "menus",
+  "info": {
+    "name": "Menus",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Name_English": {
+      "type": "string"
+    },
+    "Link": {
+      "type": "string"
+    },
+    "Name_Hebrew": {
+      "type": "string"
+    },
+    "Dropdown": {
+      "type": "dynamiczone",
+      "components": [
+        "dropdown-menu.dropdown-menu"
+      ]
+    }
+  }
+}

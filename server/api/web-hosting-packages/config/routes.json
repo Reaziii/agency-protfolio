@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/web-hosting-packages",
+      "handler": "web-hosting-packages.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/web-hosting-packages/count",
+      "handler": "web-hosting-packages.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/web-hosting-packages/:id",
+      "handler": "web-hosting-packages.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/web-hosting-packages",
+      "handler": "web-hosting-packages.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/web-hosting-packages/:id",
+      "handler": "web-hosting-packages.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/web-hosting-packages/:id",
+      "handler": "web-hosting-packages.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

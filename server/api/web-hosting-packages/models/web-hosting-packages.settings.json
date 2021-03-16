@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "web_hosting_packages",
+  "info": {
+    "name": "Web Hosting Packages",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Package_Name_English": {
+      "type": "string"
+    },
+    "Features": {
+      "type": "dynamiczone",
+      "components": [
+        "pricing-page.package-feature"
+      ]
+    },
+    "Package_Name_Hebrew": {
+      "type": "string"
+    }
+  }
+}

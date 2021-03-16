@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/domain-availability",
+      "handler": "domain-availability.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/domain-availability",
+      "handler": "domain-availability.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/domain-availability",
+      "handler": "domain-availability.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

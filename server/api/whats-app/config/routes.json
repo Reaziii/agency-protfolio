@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/whats-app",
+      "handler": "whats-app.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/whats-app",
+      "handler": "whats-app.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/whats-app",
+      "handler": "whats-app.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

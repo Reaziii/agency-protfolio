@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "domain_availabilities",
+  "info": {
+    "name": "Domain Availability"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "API": {
+      "type": "string"
+    }
+  }
+}

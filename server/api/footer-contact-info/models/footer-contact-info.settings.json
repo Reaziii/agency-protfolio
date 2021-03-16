@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "footer_contact_infos",
+  "info": {
+    "name": "Footer Contact Info"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Info": {
+      "type": "text"
+    }
+  }
+}

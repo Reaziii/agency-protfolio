@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "colors",
+  "info": {
+    "name": "Colors"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nav_color": {
+      "type": "colorpicker",
+      "columnType": "string"
+    },
+    "navlink_color": {
+      "type": "colorpicker",
+      "columnType": "string"
+    },
+    "footers_color": {
+      "type": "colorpicker",
+      "columnType": "string"
+    }
+  }
+}
