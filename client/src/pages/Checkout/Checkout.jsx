@@ -9,7 +9,7 @@ import { deleteCartItem, deleteAllItem } from "../../Redux/Cart/cart-action";
 import PayPalButton from "../../components/PayPal/PayPalButton";
 import PopOver from "../../components/PopOver/PopOver";
 import TextField from "@material-ui/core/TextField";
-
+import axios from 'axios';
 const Checkout = ({
   customDomain,
   userDomain,
@@ -29,6 +29,101 @@ const Checkout = ({
   const [emailCheck, setEmailCheck] = useState({
     id: "outlined-basic",
   });
+  const [password,setPassword] = useState('');
+  const [confirmpassword,setComfirmpassword] = useState('');
+  const [adress,setAdress] = useState('');
+  const [city,setCity] = useState('');
+  const [state,setState] = useState('');
+  const [country,setCountry] = useState('');
+  const [zipcode,setZipcode] = useState('');
+  function add_years(dt,n) 
+  {
+    return new Date(dt.setFullYear(dt.getFullYear() + n));      
+  }
+  var e =  new Date();
+  const nowdate = new Date;
+  const [domainprice,setDomainPrice] = useState();
+  const [dip,setDip] = useState(0);
+  const [SsL,setSsl] = useState('Free SSL');
+  useEffect(()=>{
+    for(var i = 0;i<cartItem.length;i++){
+      if(cartItem[i].Package_Name_English==="Domain - Registration"){
+        setDomainPrice(cartItem[i].Price);
+      }
+      if(cartItem[i].Package_Name_English==="Dedicated IP address") setDip(true);
+      if(cartItem[i].Package_Name_English==="SSL - GlobalSign & Wildcard") setSsl('SSL - GlobalSign & Wildcard');
+    }
+  },[])
+
+  const onsubmitbutton = async () =>{
+      var date = add_years(e,1);
+      var hdate = add_years(new Date(),hostingPack.Billing_Year);
+      const order_details = {
+      Email: email,
+      Name: firstName + " " + lastName,
+      Order_ID: new Date().valueOf(),
+      Total: priceCounter(cartItem),
+      HostingName: hostingPack.Package_Name_English,
+      HostingBillingCycle : hostingPack.Billing_Year,
+      HostingRegistrationDate : nowdate,
+      HostingNextDueDate : hdate,
+      SSL_StartDate : nowdate,
+      SSL_ExpiryDate : date,
+      DomainName : userDomain==='test'?customDomain:null,
+      UserOwnDomain : userDomain==='test'?null:userDomain,
+      DomainRegistration : userDomain==='test'?nowdate:null,
+      DomainNextDueDate : userDomain==='test'?date:null,
+      DomainFirstPaymentAmmount : userDomain==='test'?domainprice:null,
+      DomainRecurringAmmount : userDomain==='test'?domainprice:null,
+      Dedicated_IP : dip,
+      SSL_Issuer_Name : SsL,
+      Delivered: false,
+    }
+    console.log(order_details)
+
+
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/orders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(order_details),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+
+      
+
+      await axios
+        .post(process.env.REACT_APP_BACKEND_URL+'/auth/local/register', {
+          username: email,
+          email: email,
+          password: password,
+          Adress : adress,
+          City : city,
+          State : state,
+          ZipCode : zipcode,
+          Country : country,
+        })
+        .then(response => {
+          alert('hello baby')
+
+
+        })
+        .catch(error => {
+          // Handle error.
+          console.log('An error occurred:', error.response);
+        });
+
+
+  }
+  
 
   let history = useHistory();
   console.log("User Domain: ", userDomain);
@@ -76,6 +171,7 @@ const Checkout = ({
     }, 0);
   };
 
+
   const billingYearPrice = (item, year) => {
     if (year === 1) {
       return item.Price;
@@ -116,6 +212,8 @@ const Checkout = ({
     });
     return details;
   };
+
+  console.log(CartItem)
 
   const onSuccess = () => {
     setPopModel(true);
@@ -406,6 +504,79 @@ const Checkout = ({
                   {...emailCheck}
                 />
               </div>
+            </div>
+
+            <div style={{paddingTop:'30px'}} className="row">
+              <div className="col-md-12">
+                  <TextField type='password' hintText='password'
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  label={translation === "Hebrew" ? "סיסמה" : "Password"}
+                  variant="outlined"
+                />
+              </div>
+           
+            </div>
+
+            <h1 className="billing-adress-txt">Billing Adress</h1>
+            <div className="row">
+                <div className="col-md-6">
+                  <TextField
+                  onChange={(e) => setAdress(e.target.value)}
+                  required
+                  label={translation === "Hebrew" ? "כתובת" : "Adress"}
+                  variant="outlined"
+                />
+                </div>
+
+                <div className="col-md-6">
+                  <TextField
+                  onChange={(e) => setCity(e.target.value)}
+                  required
+                  label={translation === "Hebrew" ? "עִיר" : "City"}
+                  variant="outlined"
+                />
+                </div>
+            
+            </div>
+            <div style={{height:'40px'}}/>
+
+            <div className="row">
+                <div className="col-md-6">
+                  <TextField
+                  onChange={(e) => setState(e.target.value)}
+                  required
+                  label={translation === "Hebrew" ? "מדינה" : "State"}
+                  variant="outlined"
+                />
+                </div>
+
+                <div className="col-md-6">
+                  <TextField
+                  onChange={(e) => setZipcode(e.target.value)}
+                  required
+                  label={translation === "Hebrew" ? "מיקוד" : "Zip Code"}
+                  variant="outlined"
+                />
+                </div>
+            
+            </div>
+            <div style={{height:'40px'}}/>
+
+            <div className="row">
+                <div className="col-md-12">
+                  <TextField
+                  onChange={(e) => setCountry(e.target.value)}
+                  required
+                  label={translation === "Hebrew" ? "מדינה" : "Country"}
+                  variant="outlined"
+                />
+                </div>
+
+                <button onClick={onsubmitbutton} > click me</button>
+
+            
+            
             </div>
           </div>
         </div>

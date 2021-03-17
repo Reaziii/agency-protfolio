@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/font",
+      "handler": "font.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/font",
+      "handler": "font.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/font",
+      "handler": "font.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

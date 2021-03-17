@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "fonts",
+  "info": {
+    "name": "Font",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Menu_Font_Size": {
+      "type": "integer"
+    },
+    "Font_Family_Link": {
+      "type": "string"
+    },
+    "Font_Family_Name": {
+      "type": "string"
+    },
+    "Hebrew_Font_Family_Link": {
+      "type": "string"
+    },
+    "Hebrew_Font_Family_Name": {
+      "type": "string"
+    }
+  }
+}

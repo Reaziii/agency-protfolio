@@ -28,6 +28,59 @@
     },
     "Order_ID": {
       "type": "biginteger"
+    },
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "orders"
+    },
+    "HostingName": {
+      "type": "text"
+    },
+    "HostingRegistrationDate": {
+      "type": "date"
+    },
+    "HostingRecurringAmmount": {
+      "type": "decimal"
+    },
+    "HostingNextDueDate": {
+      "type": "date"
+    },
+    "SSL_StartDate": {
+      "type": "date"
+    },
+    "SSL_ExpiryDate": {
+      "type": "date"
+    },
+    "Hosting_IP_Adress": {
+      "type": "text"
+    },
+    "DomainName": {
+      "type": "text"
+    },
+    "DomainRegistration": {
+      "type": "date"
+    },
+    "DomainNextDueDate": {
+      "type": "date"
+    },
+    "DomainFirstPaymentAmmount": {
+      "type": "decimal"
+    },
+    "DomainRecurringAmmount": {
+      "type": "decimal"
+    },
+    "SSL_Issuer_Name": {
+      "type": "string"
+    },
+    "UserOwnDomain": {
+      "type": "text"
+    },
+    "HostingBillingCycle": {
+      "type": "integer"
+    },
+    "Dedicated_IP": {
+      "type": "boolean"
     }
   }
 }

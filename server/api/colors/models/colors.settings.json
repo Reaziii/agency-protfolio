@@ -21,6 +21,14 @@
     "footers_color": {
       "type": "colorpicker",
       "columnType": "string"
+    },
+    "regular_button_color": {
+      "type": "colorpicker",
+      "columnType": "string"
+    },
+    "order_button_color": {
+      "type": "colorpicker",
+      "columnType": "string"
     }
   }
 }
