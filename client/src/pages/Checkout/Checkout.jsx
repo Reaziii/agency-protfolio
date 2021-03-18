@@ -124,7 +124,7 @@ const Checkout = ({
     ); 
     var date = add_years(e,1);
     var hdate = add_years(new Date(),hostingPack.Billing_Year);
-      if(hostingPack.SSL==='FREE') setSsl('FREE')
+      if(hostingPack.SSL==='FREE') setSsl('FREE SSL')
     const order_details = {
       Email: email,
       Name: firstName + " " + lastName,
