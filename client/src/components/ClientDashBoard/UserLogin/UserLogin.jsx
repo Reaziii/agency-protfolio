@@ -4,8 +4,10 @@ import './UserLogin.css'
 import bg from './bg.jpg'
 import axios from 'axios'
 import Spinner from '../../Spinner/Spinner'
+import {connect} from 'react-redux'
+import {user_login} from '../../../Redux/user/user.Actions'
 const backurl = process.env.REACT_APP_BACKEND_URL
-const UserLogin = () => {
+const UserLogin = ({setuser}) => {
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
     const [isloadin,setIsloading] = useState(1);
@@ -19,14 +21,18 @@ const UserLogin = () => {
         }
         axios.post(url,userdata).then(res=>{
             localStorage.setItem('auth_token',res.data.jwt);
-            console.log(res);
+            setuser(res.data.user)
             history.push('/dashboard');
 
         }).catch(err=>{
             console.log({message : err});
         })
     }
+    if(localStorage.getItem('auth_token')){
+        history.push('/dashboard')
+    }
     useEffect( async ()=>{
+        
         
         setIsloading(0);
     },[]);
@@ -62,4 +68,8 @@ const UserLogin = () => {
     );
 };
 
-export default UserLogin;
+
+const set = (dispatch) =>({
+    setuser : details => dispatch(user_login(details)),
+})
+export default connect(null,set)(UserLogin);

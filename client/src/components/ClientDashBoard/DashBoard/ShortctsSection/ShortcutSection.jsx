@@ -1,6 +1,9 @@
 import React from 'react';
 import './Shortcutsections.css'
-const ShortcutSection = () => {
+import {connect} from 'react-redux'
+import { useHistory } from 'react-router-dom';
+import { defaultheaders } from '../../../../utils/axios.common.header';
+const ShortcutSection = ({logout}) => {
     const shotcuts = [
         {
             name : 'Register new domain',
@@ -13,6 +16,15 @@ const ShortcutSection = () => {
         }
 
     ]
+    const history = useHistory();
+    const logoutt = (e) =>{
+        e.preventDefault();
+        localStorage.removeItem('auth_token');
+        defaultheaders();
+        logout();
+        history.push('/login')
+
+    }
     return (
         <div className='scut-sec'>
             <div className='shortcuttitle'>
@@ -21,22 +33,30 @@ const ShortcutSection = () => {
 
             </div>
             <div className='shortcuts'>
-                {
-                    shotcuts.map(({name,icon,link},i)=>(
-                        <a key={i} href={link} className=''>
+                        <a  href={shotcuts[0].line} className=''>
                             <div className='shortcutss'>
                             
-                                    {icon}
-                                    {name}
+                                    {shotcuts[0].icon}
+                                    {shotcuts[0].name}
+                            </div>
+                        </a>
+
+                        <a onClick={logoutt} href={shotcuts[1].line} className=''>
+                            <div className='shortcutss'>
+                            
+                                    {shotcuts[1].icon}
+                                    {shotcuts[1].name}
                             </div>
                         </a>
 
 
-                    ))
-                }
             </div>
         </div>
     );
 };
-
-export default ShortcutSection;
+const set = dispatch =>{
+    return {logout : () => dispatch({
+        type : 'LOGOUT'
+    })}
+}
+export default connect(null,set)(ShortcutSection);

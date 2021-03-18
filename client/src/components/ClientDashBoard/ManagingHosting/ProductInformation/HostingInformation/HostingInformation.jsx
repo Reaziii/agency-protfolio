@@ -12,10 +12,10 @@ const HostingInformation = ({details}) => {
 
             </td>
             <td>
-                {details.Domain}
-                <button className="a_xx_tt">
+                {details.Domain}<br/>
+                <a href={'http://'+details.Domain}><button className="a_xx_tt">
                     visit website
-                </button>
+                </button></a>
             
             </td>
         
@@ -53,17 +53,7 @@ const HostingInformation = ({details}) => {
             </td>
         
         </tr>
-        <tr>
-            <td>
-            Username
 
-            </td>
-            <td>
-                {details.Username}
-            
-            </td>
-        
-        </tr>
         <tr>
             <td>
             Server Name

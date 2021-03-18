@@ -21,7 +21,7 @@ const SingleProduct = ({data,id}) => {
     const dropdowndd=()=>{
         setOpen(!open);
     } 
-    if(!isComponentVisible && document.querySelectorAll('.about-dropdown')[id].classList.contains('about-dropdown-open')){
+    if(!isComponentVisible && document.querySelectorAll('.about-dropdown')[id] && document.querySelectorAll('.about-dropdown')[id].classList.contains('about-dropdown-open')){
         document.querySelectorAll('.about-dropdown')[id].classList.remove('about-dropdown-open')
 
     }
@@ -37,15 +37,19 @@ const SingleProduct = ({data,id}) => {
             
             </td>
                 <td className="product-sevices">
-                    <Link to={"/dashboard/productdetails/"+data.product_id}>
+                    {data.link?
+                    <Link to={data.link}>
 
                         <h1>{data.name}</h1><p>{data.linkname}</p>
                     </Link>
+                    :<a><h1>{data.name}</h1><p>{data.linkname}</p></a>
+                    }
+
                     
                 
                 </td>
                 <td style={{display:'flex',justifyContent:'space-evenly',flexDirection:'column'}} className="pricing width">
-                    {data.pricing}
+                    {data.pricing} {data.pricing?'$':'free'}
                     {data.free_account?
                         <p>Free Account</p> 
                         : null
@@ -53,11 +57,16 @@ const SingleProduct = ({data,id}) => {
                     }
                 </td>
                 <td style={{width:'20%'}} className="next-due-date width">
-                    
+                    {data.nextduedata}
                 </td>
                 <td style={{width:'10%'}} className="status width">
                     {
-                        data.status?
+                        data.status===2?
+                            <div>
+                                pending...
+                            </div>
+                        
+                        :data.status?
                         <div  className="statuss">
                             <div style={{background:'#8bc34a'}} className="status-dot"></div> Active
                         </div>
@@ -73,8 +82,6 @@ const SingleProduct = ({data,id}) => {
                     <div className="about-dropdown">
                         <ul>
                             <li>view details</li>
-                            <li>view details</li>
-                            <li>view details</li>
                         </ul>
                     </div>
 
@@ -84,7 +91,7 @@ const SingleProduct = ({data,id}) => {
             </tr>
             {open?
                 <div className="D_mx7">
-                    <p>Pricing : {data.pricing}
+                    <p>Pricing : {data.pricing} {data.pricing?'$':'free'}
                         {data.free_account?
                             <p>Free Account</p> 
                             : null

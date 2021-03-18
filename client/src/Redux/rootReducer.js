@@ -6,12 +6,12 @@ import popupReducer from './Popup/popup-reducer';
 import {persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import sessionStorage from 'redux-persist/lib/storage/session';
-
+import {userReducer} from './user/user.Reducer'
 
 const persistConfig = {
     key: 'root',
-    storage: sessionStorage,
-    whitelist: ['pages', 'popup', 'cart']
+    storage: storage,
+    whitelist: ['pages', 'popup', 'cart','user']
   };
   
 const rootReducer = combineReducers({
@@ -19,6 +19,7 @@ const rootReducer = combineReducers({
     domain: domainReducer,
     cart: cartReducer,
     popup: popupReducer,
+    user : userReducer,
 })
 
 export default persistReducer(persistConfig, rootReducer);

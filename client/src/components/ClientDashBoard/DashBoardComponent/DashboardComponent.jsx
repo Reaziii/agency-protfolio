@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import ClientServices from '../ClientsServices/Services/ClientServices';
 import DashBoardNav from '../DashBoardNav/DashBoardNav';
 import DashBoardBody from '../DashBoard/DashBoardBody/DashBoardBody'
@@ -7,6 +7,11 @@ import ManagingDomins from '../MyDomains/ManaginDomains/ManagingDomins';
 import MyDomains from '../MyDomains/Mydomains/MyDomains';
 import ManagingHosting from '../ManagingHosting/ManagingHosting';
 const DashboardComponent = () => {
+    const history = useHistory();
+    if(!localStorage.getItem('auth_token')) {
+        history.push('/login');
+        return 0;
+    }
     return (
         <div className='DashboardComponent'>
             <DashBoardNav/>

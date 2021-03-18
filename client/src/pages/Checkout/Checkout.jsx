@@ -10,6 +10,7 @@ import PayPalButton from "../../components/PayPal/PayPalButton";
 import PopOver from "../../components/PopOver/PopOver";
 import TextField from "@material-ui/core/TextField";
 import axios from 'axios';
+import {defaultheaders} from '../../utils/axios.common.header'
 const Checkout = ({
   customDomain,
   userDomain,
@@ -18,6 +19,8 @@ const Checkout = ({
   hostingPack,
   delteAllItem,
   translation,
+  setuser,
+  user
 }) => {
   const [clientId, setClientId] = useState("");
   const [popModel, setPopModel] = useState(false);
@@ -42,23 +45,87 @@ const Checkout = ({
   }
   var e =  new Date();
   const nowdate = new Date;
-  const [domainprice,setDomainPrice] = useState();
-  const [dip,setDip] = useState(0);
+  const [domainprice,setDomainPrice] = useState(0);
+  const [dip,setDip] = useState('');
   const [SsL,setSsl] = useState('Free SSL');
+  const [hostingprice,setHostingprice] = useState(hostingPack.Price);
+  const [registered,setregistered] = useState(0);
+  const [u__id,setu__id] = useState(null);
+  const [sslprice,setsslprice] = useState(0);
+  const [Dedicated_IPprice,setDedicatedIpprice] = useState(0);
   useEffect(()=>{
+    if(user){
+      setFirstName(user.FullName);
+      setEmail(user.email)
+      setu__id(user.id)
+      setregistered(true)
+    }
     for(var i = 0;i<cartItem.length;i++){
       if(cartItem[i].Package_Name_English==="Domain - Registration"){
         setDomainPrice(cartItem[i].Price);
       }
-      if(cartItem[i].Package_Name_English==="Dedicated IP address") setDip(true);
-      if(cartItem[i].Package_Name_English==="SSL - GlobalSign & Wildcard") setSsl('SSL - GlobalSign & Wildcard');
+      if(cartItem[i].Package_Name_English&& cartItem[i].Package_Name_English==="Dedicated IP address") {
+        setDip(1);
+        var price = 0;
+        price = cartItem[i].Price 
+        if(price)setDedicatedIpprice(price);
+      }
+      if(cartItem[i].Package_Name_English==="SSL - GlobalSign & Wildcard") {
+        setSsl('SSL - GlobalSign & Wildcard');
+        setsslprice(cartItem[i].Price);
+      }
+      
     }
+
   },[])
 
+
+
   const onsubmitbutton = async () =>{
-      var date = add_years(e,1);
-      var hdate = add_years(new Date(),hostingPack.Billing_Year);
-      const order_details = {
+      if(!email.length || !password.length || !adress.length || !city.length || !state.length || !zipcode.length || !country.length){
+        alert("Please fill up all details")
+        return ;
+      }
+
+      else {await axios
+        .post(process.env.REACT_APP_BACKEND_URL+'/auth/local/register', {
+          username: email,
+          email: email,
+          password: password,
+          FullName : firstName+' '+lastName,
+          Adress : adress,
+          City : city,
+          State : state,
+          ZipCode : zipcode,
+          Country : country,
+          FullName : firstName + " " + lastName,
+        })
+        .then(response => {
+            localStorage.setItem('auth_token',response.data.jwt);
+            setuser(response.data.user);
+            setregistered(1);
+            setu__id(response.data.user.id)
+        })
+        .catch(error => {
+          alert("email already taken");
+        });
+
+}
+  }
+
+  const oncheckoutdone = async () =>{
+    setPopModel(true);
+    setPopMessage(
+      `${
+        translation === "Hebrew"
+          ? "התשלום הצליח. תודה על קנייתך. מפנה לדף הבית ...."
+          : "Payment Successful. Thanks for your purchase. Redirecting to homepage...."
+      }`
+    ); 
+    var date = add_years(e,1);
+    var hdate = add_years(new Date(),hostingPack.Billing_Year);
+      if(hostingPack.SSL==='FREE') setSsl('FREE')
+    const order_details = {
       Email: email,
       Name: firstName + " " + lastName,
       Order_ID: new Date().valueOf(),
@@ -75,58 +142,41 @@ const Checkout = ({
       DomainNextDueDate : userDomain==='test'?date:null,
       DomainFirstPaymentAmmount : userDomain==='test'?domainprice:null,
       DomainRecurringAmmount : userDomain==='test'?domainprice:null,
-      Dedicated_IP : dip,
+      Dedicated_IP_Request : dip,
       SSL_Issuer_Name : SsL,
       Delivered: false,
-    }
-    console.log(order_details)
+      HostingRecurringAmmount : hostingprice,
+      UserID__ : u__id, 
+      Dedicated_IP_Price : Dedicated_IPprice,
+      SSL_Price : sslprice,
 
+      
+    } 
+    console.log(order_details)   
 
     await fetch(`${process.env.REACT_APP_BACKEND_URL}/orders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        'Authorization' : 'Bearer '+localStorage.getItem('auth_token')
       },
       body: JSON.stringify(order_details),
     })
-      .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
+        console.log(data)
       })
       .catch((error) => {
-        console.error("Error:", error);
+         alert('You can ask for refund...Please contact us')
       });
+  
 
 
-      
-
-      await axios
-        .post(process.env.REACT_APP_BACKEND_URL+'/auth/local/register', {
-          username: email,
-          email: email,
-          password: password,
-          Adress : adress,
-          City : city,
-          State : state,
-          ZipCode : zipcode,
-          Country : country,
-        })
-        .then(response => {
-          alert('hello baby')
-
-
-        })
-        .catch(error => {
-          // Handle error.
-          console.log('An error occurred:', error.response);
-        });
 
 
   }
   
 
   let history = useHistory();
-  console.log("User Domain: ", userDomain);
 
   const handleHostingDelete = (item) => {
     deleteItem(item);
@@ -181,7 +231,6 @@ const Checkout = ({
       return item.Three_Year_Package_Price;
     }
   };
-
   useEffect(() => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/pay-pal`)
       .then((res) => res.json())
@@ -213,7 +262,6 @@ const Checkout = ({
     return details;
   };
 
-  console.log(CartItem)
 
   const onSuccess = () => {
     setPopModel(true);
@@ -447,21 +495,27 @@ const Checkout = ({
             lastName &&
             email &&
             !emailError ? (
-              <PayPalButton
-                price={priceCounter(cartItem)}
-                clientId={clientId}
-                onCancel={onCancel}
-                onSuccess={onSuccess}
-                onError={onError}
-              />
+              <div/>
             ) : null}
+
+            {registered?
+              // <PayPalButton
+              //   price={priceCounter(cartItem)}
+              //   clientId={clientId}
+              //   onCancel={onCancel}
+              //   onSuccess={onSuccess}
+              //   onError={onError}
+              // />
+              <button onClick={oncheckoutdone}>checkout</button>
+              :null
+            }
 
             {popModel && popMessage ? (
               <PopOver message={popMessage} onClose={popModelClose} />
             ) : null}
           </div>
         </div>
-
+        {!registered?
         <div className="row billing-details">
           <div className="col-md-6">
             <div className="row">
@@ -573,30 +627,35 @@ const Checkout = ({
                 />
                 </div>
 
-                <button onClick={onsubmitbutton} > click me</button>
+                <button onClick={onsubmitbutton} className="registrationbtn" > Registration</button>
 
             
             
             </div>
           </div>
-        </div>
+        </div>:null}
       </div>
       <Footer />
     </>
   );
 };
 
-const mapStateToProps = ({ domain, cart, pages }) => ({
+const mapStateToProps = ({ domain, cart, pages,user }) => ({
   customDomain: domain.Custom_Domain,
   userDomain: domain.User_Domain,
   cartItem: cart.cart,
   hostingPack: cart.hostingPack,
   translation: pages.translation,
+  user : user.user,
 });
 
 const mapDisPatchToProps = (dispatch) => ({
   deleteItem: (item) => dispatch(deleteCartItem(item)),
   delteAllItem: () => dispatch(deleteAllItem()),
+  setuser : (details) => dispatch({
+    type : 'LOGIN',
+    payload : details,
+  })
 });
 
 export default connect(mapStateToProps, mapDisPatchToProps)(Checkout);

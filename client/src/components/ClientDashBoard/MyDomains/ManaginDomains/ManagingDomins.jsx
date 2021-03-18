@@ -1,24 +1,47 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import {useParams,Link} from 'react-router-dom'
+import { defaultheaders } from '../../../../utils/axios.common.header';
 import SearchBox from '../../ClientsServices/SearchBox/SearchBox'
+import Spinner from '../../../Spinner/Spinner'
 import './ManagingDomains.css'
 const ManagingDomins = () => {
-    const params = useParams().domainname;
-    const domaindetails = {
-        name : 'loremispum.com',
-        Registration_data : '10/10/2010',
-        Next_due_data : '10/10/2010',
-        First_payment_ammount : '10.10$ USD',
-        Recurring_ammount : '10.10$ USD Every 1 Year/s',
-        Payment_method : 'Paypal',
-        SSL_status : 'valid SSL Detected',
-        SSL_start_Date : '10/10/2010',
-        SSL_Issuer_name : 'R3',
-        SSL_expiry_date : '10/19/2019',
-        status : 1,
-        
-    }
+    var id = useParams().domainname;
+    const [loding,setisloading] = useState(true);
+    const [domaindetails,setdomaindetails] = useState({});
+    id = Number(id);
+    useEffect(()=>{
+        defaultheaders();
+        var details = {};
+        setdomaindetails({});
+        axios.get(process.env.REACT_APP_BACKEND_URL+'/orders/'+id).then(res=>{
+            console.log(res);
+            details = {
+                name :  res.data.DomainName && res.data.DomainName.length?res.data.DomainName:res.data.UserOwnDomain,
+                Registration_data : res.data.DomainRegistration,
+                Next_due_data : res.data.DomainNextDueDate,
+                First_payment_ammount : res.data.DomainFirstPaymentAmmount,
+                Recurring_ammount : res.data.DomainRecurringAmmount,
+                SSL_status : 'valid SSL Detected',
+                SSL_start_Date : res.data.SSL_StartDate,
+                SSL_Issuer_name : res.data.SSL_Issuer_Name,
+                SSL_expiry_date : res.data.SSL_ExpiryDate,
+                status : res.data.Delivered?res.data.DomainIsActive:2,
+            }
+            setdomaindetails(details)
+            console.log(details)
 
+        }).catch(err=>console.log(err))
+
+        setisloading(false)
+
+
+
+    },[])
+
+    if(loding){
+        return (<Spinner/>)
+    }
     
     return (
         <div className="manage-domains">
@@ -52,7 +75,7 @@ const ManagingDomins = () => {
                             <p className="_dd_box_status__">Status : 
                                 {
                                     domaindetails.status?
-                                    <p className="_dd_active_">active</p>
+                                    <p className="_dd_active_">{domaindetails.status===2?'pending':'active'}</p>
                                     :
                                     <p className="_dd_terminated_">terminated</p>
 
@@ -76,15 +99,15 @@ const ManagingDomins = () => {
                             </div>
                             <div className="dd_sec_pxx">
                                 <p>First Payment Ammount : </p>
-                                <p>{domaindetails.First_payment_ammount}</p>
+                                <p>{domaindetails.First_payment_ammount} $</p>
                             </div>
                             <div className="dd_sec_pxx">
                                 <p>Recurring Ammount : </p>
-                                <p>{domaindetails.Recurring_ammount}</p>
+                                <p>{domaindetails.Recurring_ammount} $</p>
                             </div>
                             <div className="dd_sec_pxx">
                                 <p>Payment Method : </p>
-                                <p>{domaindetails.Payment_method}</p>
+                                <p>paypal</p>
                             </div>
                         </div>
                     </div>

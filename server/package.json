@@ -9,8 +9,8 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
   "dependencies": {
+    "jwt-decode": "^3.1.2",
     "knex": "<0.20.0",
     "slugify": "^1.4.6",
     "sqlite3": "5.0.0",

@@ -1,11 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './InfoSections.css'
-const InfoSection = () => {
+const InfoSection = ({user}) => {
+    console.log(user)
     const details = {
-        name : 'Reaz Ahammed',
-        distric : 'bangladesh',
-        state : 'Dhaka, Dhaka, 4400',
-        country : 'Bangladesh'
+        name : user.FullName,
+        adress : user.Adress,
+        city : user.City,
+        state : user.State,
+        ZipCode : user.ZipCode,
+        country :  user.Country,
 
     }
     return (
@@ -19,16 +23,19 @@ const InfoSection = () => {
             </p>
             <br/>
             <p>
-                {details.distric}
+                {details.adress}
             </p>
             <p>
-                {details.state}
+                {details.city}{', '}{details.state}{', '}{details.ZipCode}
             </p>
             <p>
                 {details.country}
             </p>
+
         </div>
     );
 };
-
-export default InfoSection;
+const get = state =>({
+    user : state.user.user,
+})
+export default connect(get)(InfoSection);

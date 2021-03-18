@@ -29,11 +29,6 @@
     "Order_ID": {
       "type": "biginteger"
     },
-    "user": {
-      "plugin": "users-permissions",
-      "model": "user",
-      "via": "orders"
-    },
     "HostingName": {
       "type": "text"
     },
@@ -80,6 +75,51 @@
       "type": "integer"
     },
     "Dedicated_IP": {
+      "type": "string"
+    },
+    "Dedicated_IP_Active": {
+      "type": "boolean"
+    },
+    "UserID__": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "boolean"
+    },
+    "DomainIsActive": {
+      "type": "boolean"
+    },
+    "HostingIsActive": {
+      "type": "boolean"
+    },
+    "SSL_IsActive": {
+      "type": "boolean"
+    },
+    "Dedicated_IP_IsActive": {
+      "type": "boolean"
+    },
+    "SSL_Price": {
+      "type": "decimal"
+    },
+    "Dedicated_IP_Price": {
+      "type": "decimal"
+    },
+    "PrimaryIP": {
+      "type": "text"
+    },
+    "HostingServerName": {
+      "type": "text"
+    },
+    "SSL_Status": {
+      "type": "string"
+    },
+    "HostingIP_Adress": {
+      "type": "string"
+    },
+    "HostingNameServers": {
+      "type": "text"
+    },
+    "Dedicated_IP_Request": {
       "type": "boolean"
     }
   }

@@ -88,3 +88,51 @@
 .MuiFormControl-root{
   width: 100%;
 }
+
+.registrationbtn{
+  width:50%;
+  margin-left: 15px;
+  border: 1px solid #262626;
+  height: 40px;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.registrationbtn:hover{
+  background: black;
+  color: white;
+}
+
+/* 
+
+
+
+
+    
+
+  
+  */
+
+
+
+/*           
+  fetch(`${process.env.REACT_APP_BACKEND_URL}/orders`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization' : 'Bearer '+localStorage.getItem('auth_token')
+    },
+    body: JSON.stringify({...order_details,User_id:10}),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+    })
+    .catch((error) => {
+       console.log('error occured. Please try again letter')
+    }); */
+
+
+    

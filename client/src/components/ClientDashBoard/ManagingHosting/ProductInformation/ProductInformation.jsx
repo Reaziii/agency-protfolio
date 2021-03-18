@@ -1,9 +1,72 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ProductInfomation.css'
 import BillingInformation from './BillingInformation/BillingInformation'
 import HostingInformation from './HostingInformation/HostingInformation'
-const ProductInformation = ({product_details}) => {
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import Spinner from '../../../Spinner/Spinner'
+import { defaultheaders } from '../../../../utils/axios.common.header';
+const ProductInformation = ({}) => {
     const [selecteditem,setSelecteditem] = useState(1);
+    const productid = useParams().productid;
+    const [loading,setloading] = useState(1);
+    const [product_details,setPdt] = useState({});
+
+    useEffect(()=>{
+        defaultheaders();
+        axios.get(process.env.REACT_APP_BACKEND_URL+'/orders/'+productid).then(res=>{
+            const data = res.data;
+            var temp = {};
+            var Nameservers = [];
+            if(data.HostingNameServers) Nameservers = data.HostingNameServers.split(' ');
+            temp = {
+                name : data.HostingName,
+                active : data.Delivered?data.HostingIsActive:2,
+                hosting_type : null,
+                primary_ip : data.PrimaryIP,
+                billing_overview : {
+                    Registration_date : data.HostingRegistrationDate,
+                    Recurring_ammount : '$'+data.HostingRecurringAmmount+'USD',
+                    Next_due_data : data.HostingNextDueDate,
+                    Billing_cycle : data.HostingBillingCycle+' year/s',
+                    Payment_method : 'Credit Card (paypal)'
+                },
+                Hosting_information : {
+                    Domain : data.DomainName && data.DomainName.length?data.DomainName:data.UserOwnDomain,
+                    SSL_status : data.SSL_Status,
+                    SSL_expiry_date : data.SSL_ExpiryDate,
+                    SSL_Issuer_name : data.SSL_Issuer_Name,
+                    Server_name : data.HostingServerName,
+                    IP_adress : data.HostingIP_Adress,
+                    Name_servers : Nameservers,
+                    SSL_start_date : data.SSL_StartDate,
+                },
+                Disk_Usage : {
+                    total : '100000M',
+                    used : '100M',
+                },
+                Bandwith_Usages : {
+                    total : '1020304050M',
+                    used : '102030M',
+                }
+            }
+
+            setPdt(temp)
+            setloading(false)
+
+
+
+        })
+
+
+
+    },[]);
+
+    if(loading){
+        return (<Spinner/>)
+    }
+
+  
     return (
         <div className="productinformation">
             <div className="p_ffss">
@@ -11,7 +74,7 @@ const ProductInformation = ({product_details}) => {
                     <div className="p_box">
                         <div className="active-status">
                         {
-                            product_details.active?<p className="active-gh">active</p>:<h1 className="terminated-gh">terminated</h1>
+                            product_details.active?<p className="active-gh">{product_details.active===2?'pending':'active'}</p>:<h1 className="terminated-gh">terminated</h1>
                         }
                         </div>
 
@@ -45,7 +108,7 @@ const ProductInformation = ({product_details}) => {
                                 </tr>
                                 <tr className="tr">
                                     <td className="ft-sec td">
-                                        Private Nameservers
+                                        Nameservers
                                     </td> 
                                     <td className="st-sec td">
                                         {

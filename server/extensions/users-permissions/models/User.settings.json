@@ -59,10 +59,6 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "orders": {
-      "via": "user",
-      "collection": "orders"
-    },
     "Adress": {
       "type": "text"
     },
@@ -76,6 +72,9 @@
       "type": "text"
     },
     "Country": {
+      "type": "string"
+    },
+    "FullName": {
       "type": "string"
     }
   }

@@ -25,6 +25,7 @@
     line-height: 30px;
     transition: 0.2s;
     color: #262626;
+    cursor: pointer;
 }
 
 .shortcutss:hover{

@@ -45,7 +45,7 @@ const SingleProduct = ({data,id}) => {
                 
                 </td>
                 <td style={{display:'flex',justifyContent:'space-evenly',flexDirection:'column'}} className="pricing width">
-                    {data.pricing}
+                    {data.pricing} $
                     {data.free_account?
                         <p>Free Account</p> 
                         : null
@@ -53,7 +53,7 @@ const SingleProduct = ({data,id}) => {
                     }
                 </td>
                 <td style={{width:'20%'}} className="next-due-date width">
-                    
+                    {data.nextduedata}
                 </td>
                 <td style={{width:'10%'}} className="status width">
                     {
@@ -73,8 +73,7 @@ const SingleProduct = ({data,id}) => {
                     <div className="about-dropdown">
                         <ul>
                             <li>view details</li>
-                            <li>view details</li>
-                            <li>view details</li>
+
                         </ul>
                     </div>
 
@@ -84,7 +83,7 @@ const SingleProduct = ({data,id}) => {
             </tr>
             {open?
                 <div className="D_mx7">
-                    <p>Pricing : {data.pricing}
+                    <p>Pricing : {data.pricing} $
                         {data.free_account?
                             <p>Free Account</p> 
                             : null

@@ -23,7 +23,7 @@ const ClientServices = () => {
                 </div>
                 <SearchBox setfield={setsearchfield}/>
             </div>
-            <ServicesAndProducts/>
+            <ServicesAndProducts searchfield={searchfield}/>
         </div>
     );
 };

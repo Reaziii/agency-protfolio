@@ -18,7 +18,6 @@ const MyDomains = () => {
                 <Link to='/dashboard'> Client Area</Link> / My Domains
                 </p>
                 </div>
-                <SearchBox setfield={setserachfiled}/>
 
             </div>
 

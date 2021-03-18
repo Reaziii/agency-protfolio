@@ -3,43 +3,60 @@ import './ServicesAndProducts.css'
 import {dropdown,removeactivefromlist} from './functions.js'
 import SingleProduct from './Single/SingleProduct';
 import useComponentVisible from '../../../customhook/useCom';
+import axios from 'axios';
+import { defaultheaders } from '../../../../../utils/axios.common.header';
 const ServicesAndProducts = () => {
     const [selectedlist,setSelectedlist] = useState("All Entries");
     const { ref, isComponentVisible,setIsComponentVisible } = useComponentVisible(true);
-
+    const [show,setshow] = useState(0);
     const [productlist,setProductList] = useState([]);
     const selectitem = (e,id) =>{
         setIsComponentVisible(true)
 
         setSelectedlist(e.target.innerHTML);
+        setshow(!show)
         removeactivefromlist();
         e.target.classList.add('menulistactive')
         document.querySelector('.drop-down-menues').classList.remove('close-menues');
     }
+
+
+
     useEffect(()=>{
-        setProductList([
-            {
-                name : 'Lorem Ipsum is simply dummy text ',
-                link : 'loremispum-dummy.com',
-                linkname : 'loremispum-dummy.com',
-                pricing : '0.00$',
-                free_account : true,
-                status : 1,
-                product_id : 1,
-    
-            },
-            {
-                name : 'Lorem Ipsum is simply dummy text ',
-                link : 'loremispum-dummy.com',
-                linkname : 'loremispum-dummy.com',
-                pricing : "10.00$",
-                free_account : false,
-                status : 0,
-                product_id : 2,
-    
-            }
-        ])
+        defaultheaders();
+        axios.get(process.env.REACT_APP_BACKEND_URL+'/orders').then(res=>{
+            setProductList(res.data);
+            console.log(res);
+            const activepr = [];
+            setProductList([])
+            res.data.map(data=>{
+                if(data.DomainName && data.DomainName.length){
+                    activepr.push(
+                        {
+                            name : "Domain - Registration",
+                            linkname : data.DomainName,
+                            link : data.DomainName,
+                            pricing : data.DomainFirstPaymentAmmount,
+                            status : data.DomainIsActive,
+                            free_account : false,
+                            product_id : data.id,
+                            nextduedata : data.DomainNextDueDate,
+                        }
+                    
+                    )
+                }
+                
+            })
+            setProductList(activepr)
+
+        });
+        
+
+
+
     },[])
+
+
     const total_page = [1,2];
     if(!isComponentVisible){
         document.querySelector('.drop-down-menues').classList.remove('close-menues');
@@ -57,7 +74,7 @@ const ServicesAndProducts = () => {
                         <div className="drop-down-menues">
                             <ul>
                                 <li onClick={selectitem.bind(0)} className="drop-down-menue-list menulistactive">All Entries</li>
-                                <li onClick={selectitem.bind(1)} className="drop-down-menue-list">Uncle</li>
+                                <li onClick={selectitem.bind(1)} className="drop-down-menue-list">Active</li>
                             </ul>               
                         </div>
                         
@@ -72,7 +89,7 @@ const ServicesAndProducts = () => {
                     <tr className="tr1">
                         <td className="product-sevices">
                             Product/Services 
-                                <div className="up-down-sec">
+                                <div  style={{display:'none'}} className="up-down-sec">
                                     <i  class="fas fa-caret-up up activeupdown"></i>
                                     <i class="fas fa-caret-down down"></i>
                                 </div>
@@ -80,14 +97,14 @@ const ServicesAndProducts = () => {
                         </td>
                         <td className="pricing width">
                             Pricing
-                            <div className="up-down-sec">
+                            <div style={{display:'none'}} className="up-down-sec">
                                     <i class="fas fa-caret-up up"></i>
                                     <i class="fas fa-caret-down down"></i>
                             </div>
                         </td>
                         <td style={{width:'20%'}} className="next-due-date width">
                             Next Due Date
-                            <div className="up-down-sec">
+                            <div  style={{display:'none'}} className="up-down-sec">
                                     <i class="fas fa-caret-up up"></i>
                                     <i class="fas fa-caret-down down"></i>
                             </div>
@@ -95,7 +112,7 @@ const ServicesAndProducts = () => {
                         <td style={{width:'10%'}} className="status width">
                             
                             Status
-                            <div className="up-down-sec">
+                            <div  style={{display:'none'}} className="up-down-sec">
                                     <i class="fas fa-caret-up up"></i>
                                     <i class="fas fa-caret-down down"></i>
                             </div>
@@ -108,11 +125,14 @@ const ServicesAndProducts = () => {
 
                     {
                         productlist.map((data,i)=>{
-                            return <SingleProduct key={i} id={i} data={data}/>
+                            if(show){
+                                if(data.status) return  <SingleProduct key={i} id={i} data={data}/>;
+                            }
+                            else return <SingleProduct key={i} id={i} data={data}/>
                         })
                     }
 
-                    <tr className="bottom-site">
+                    <tr  style={{display:'none'}} className="bottom-site">
                         <div className="show-with-navigation">
                             <div>
                                 show 
