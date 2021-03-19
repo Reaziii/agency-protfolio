@@ -18,6 +18,7 @@ import Spinner from './components/Spinner/Spinner';
 import { updatePopupStatus } from './Redux/Popup/popup-action';
 import DashboardComponent from './components/ClientDashBoard/DashBoardComponent/DashboardComponent';
 import UserLogin from './components/ClientDashBoard/UserLogin/UserLogin';
+import Register from './components/ClientDashBoard/DashBoard/RegisterDomain/RegisterPage/Register';
 
 function App({ updatePagesData, translation, updateTranslation, popupStatus, updatePopupStatus, updateColors, colors }) {
 
@@ -107,6 +108,8 @@ function App({ updatePagesData, translation, updateTranslation, popupStatus, upd
           <Route path="/cart" exact component={Cart} />
           <Route path="/checkout" exact component={Checkout} />
           <Route path="/login" exact component={UserLogin}/>
+          <Route path="/domainregister" exact component={Register}/>
+
           <Route path="/dashboard" component={DashboardComponent}/>
 
           <Route path="/:id" component={Custom} />

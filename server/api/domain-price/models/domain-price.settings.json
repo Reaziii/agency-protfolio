@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "domain_prices",
+  "info": {
+    "name": "Domain Price"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Price": {
+      "type": "decimal"
+    }
+  }
+}

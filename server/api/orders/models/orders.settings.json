@@ -30,7 +30,7 @@
       "type": "biginteger"
     },
     "HostingName": {
-      "type": "text"
+      "type": "string"
     },
     "HostingRegistrationDate": {
       "type": "date"
@@ -48,10 +48,10 @@
       "type": "date"
     },
     "Hosting_IP_Adress": {
-      "type": "text"
+      "type": "string"
     },
     "DomainName": {
-      "type": "text"
+      "type": "string"
     },
     "DomainRegistration": {
       "type": "date"
@@ -69,7 +69,7 @@
       "type": "string"
     },
     "UserOwnDomain": {
-      "type": "text"
+      "type": "string"
     },
     "HostingBillingCycle": {
       "type": "integer"
@@ -105,10 +105,10 @@
       "type": "decimal"
     },
     "PrimaryIP": {
-      "type": "text"
+      "type": "string"
     },
     "HostingServerName": {
-      "type": "text"
+      "type": "string"
     },
     "SSL_Status": {
       "type": "string"
@@ -121,6 +121,12 @@
     },
     "Dedicated_IP_Request": {
       "type": "boolean"
+    },
+    "CouponName": {
+      "type": "string"
+    },
+    "Discount": {
+      "type": "decimal"
     }
   }
 }

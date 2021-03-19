@@ -17,18 +17,18 @@ const InfoSection = ({user}) => {
             <h2>
                 Your Info
             </h2>
-            <p>
+            <p style={{textTransform:'capitalize'}}>
                 {details.name}
                
             </p>
             <br/>
-            <p>
+            <p style={{textTransform:'capitalize'}}>
                 {details.adress}
             </p>
-            <p>
+            <p style={{textTransform:'capitalize'}}>
                 {details.city}{', '}{details.state}{', '}{details.ZipCode}
             </p>
-            <p>
+            <p style={{textTransform:'capitalize'}}>
                 {details.country}
             </p>
 

@@ -59,7 +59,7 @@ const SingleProduct = ({data,id}) => {
                     {
                         data.status?
                         <div  className="statuss">
-                            <div style={{background:'#8bc34a'}} className="status-dot"></div> Active
+                            <div style={{background:'#8bc34a'}} className={data.status===2?null:'status-dot'}></div> {data.status===2?'pending...':'active'}
                         </div>
                         :
                         <div className="statuss">

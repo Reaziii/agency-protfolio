@@ -36,6 +36,7 @@ const SingleProduct = ({data,id}) => {
                 </button>
             
             </td>
+            
                 <td className="product-sevices">
                     {data.link?
                     <Link to={data.link}>
@@ -49,7 +50,9 @@ const SingleProduct = ({data,id}) => {
                 
                 </td>
                 <td style={{display:'flex',justifyContent:'space-evenly',flexDirection:'column'}} className="pricing width">
-                    {data.pricing} {data.pricing?'$':'free'}
+                    {data.pricing?
+                        '$'+data.pricing+' USD'
+                        :'FREE'}
                     {data.free_account?
                         <p>Free Account</p> 
                         : null
@@ -91,7 +94,9 @@ const SingleProduct = ({data,id}) => {
             </tr>
             {open?
                 <div className="D_mx7">
-                    <p>Pricing : {data.pricing} {data.pricing?'$':'free'}
+                    <p>Pricing : {data.pricing?
+                        '$'+data.pricing+' USD'
+                        :'FREE'}
                         {data.free_account?
                             <p>Free Account</p> 
                             : null

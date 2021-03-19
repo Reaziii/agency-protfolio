@@ -1,27 +1,68 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import OwlCarousel from 'react-owl-carousel3';
 import './DetailCountComponent.css'
+import axios from 'axios'
+import {defaultheaders} from '../../../../utils/axios.common.header'
+import Spinner from '../../../Spinner/Spinner'
+import { CircularProgress } from '@material-ui/core';
 const DetailCountComponent = () => {
+    const [clc,setclc] = useState(0);
+    const [dlc,setdlc] = useState(0);
+    const [scc,setscc] = useState(0);
+    const [dipc,setdipc] = useState(0);
+    const [loding,setloding] = useState(1);
+    useEffect(()=>{
+        defaultheaders();
+        axios.get(process.env.REACT_APP_BACKEND_URL+'/orders').then(res=>{
+            var cc = 0,dc =0,sc=0,dip=0;
+            res.data.map((data)=>{
+                if(data.DomainName && data.DomainName.length){
+                    dc++;
+                }
+                if(data.HostingName && data.HostingName.length){
+                    cc++;
+                    sc++;
+                }
+                if(data.Dedicated_IP_Request) {
+                    dip++;
+                }
+                
+
+
+            })
+            setclc(cc);
+            setdlc(dc);
+            setscc(sc);
+            setdipc(dip);
+            setloding(false)
+        })
+
+
+
+    },[])
+
+
+
     const list = [
         {
             name : 'My Cloud',
             link : '/',
-            count : 1,
+            count : clc,
         },
         {
             name : 'Domains',
             link : '/',
-            count : 0,
+            count : dlc,
         },
         {
-            name : 'Domains',
+            name : 'SSL',
             link : '/',
-            count : 0,
+            count : scc,
         },
         {
-            name : 'Domains',
+            name : 'Dedicated IP',
             link : '/',
-            count : 0,
+            count : dipc,
         },
     ];
     const options = {
@@ -47,6 +88,18 @@ const DetailCountComponent = () => {
           },
         },
       };
+
+      if(loding){
+        return (<div
+            style={{
+                display:'flex',
+                justifyContent:'center',
+                height:'200px',
+                alignItems:'center'
+                
+            }}
+            ><CircularProgress /></div>)
+      }
     return (
         <div className='detailcountcomponent'>
                 <div className='count-sec'>

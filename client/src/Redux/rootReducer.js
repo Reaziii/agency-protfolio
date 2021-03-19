@@ -7,7 +7,7 @@ import {persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import sessionStorage from 'redux-persist/lib/storage/session';
 import {userReducer} from './user/user.Reducer'
-
+import DashboardDomainReducer from './dashdomain/reducer';
 const persistConfig = {
     key: 'root',
     storage: storage,
@@ -20,6 +20,7 @@ const rootReducer = combineReducers({
     cart: cartReducer,
     popup: popupReducer,
     user : userReducer,
+    ddrd : DashboardDomainReducer,
 })
 
 export default persistReducer(persistConfig, rootReducer);

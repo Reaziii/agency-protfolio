@@ -12,27 +12,32 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 cart: duplicateCheck(state.cart, action.payload)
             }
-            case 'DELETE_ITEM':
+        case 'DELETE_ITEM':
+            return {
+                ...state,
+                cart: removeCartItem(state.cart, action.payload)
+            }
+            case 'ADD_HOSTING_PACK':
+            return {
+                ...state,
+                hostingPack: action.payload
+            }
+        case 'UPDATE_HOSTING_PACK':
+            return {
+                ...state,
+                hostingPack: updateHostinPack(state.hostingPack, action.payload)
+            }
+            case 'DELETE_ALL_ITEM':
                 return {
                     ...state,
-                    cart: removeCartItem(state.cart, action.payload)
-               }
-               case 'ADD_HOSTING_PACK':
-                return {
-                    ...state,
-                    hostingPack: action.payload
+                    cart: []
                 }
-            case 'UPDATE_HOSTING_PACK':
+        case 'CLEAR_ALL_ITEM':
                 return {
                     ...state,
-                    hostingPack: updateHostinPack(state.hostingPack, action.payload)
+                    cart : [],
+                    hostingPack : {},
                 }
-                case 'DELETE_ALL_ITEM':
-                    return {
-                        ...state,
-                        cart: []
-                   }
-            
 
         default:
             return state

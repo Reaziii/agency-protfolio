@@ -37,7 +37,7 @@ const ServicesAndProducts = () => {
                             linkname : data.DomainName,
                             link : data.DomainName,
                             pricing : data.DomainFirstPaymentAmmount,
-                            status : data.DomainIsActive,
+                            status : data.Delivered?data.DomainIsActive:2,
                             free_account : false,
                             product_id : data.id,
                             nextduedata : data.DomainNextDueDate,
@@ -126,7 +126,8 @@ const ServicesAndProducts = () => {
                     {
                         productlist.map((data,i)=>{
                             if(show){
-                                if(data.status) return  <SingleProduct key={i} id={i} data={data}/>;
+                                if(data.status===true) return  <SingleProduct key={i} id={i} data={data}/>;
+                                else return (<div></div>)
                             }
                             else return <SingleProduct key={i} id={i} data={data}/>
                         })

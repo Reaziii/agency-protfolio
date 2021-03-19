@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "coupons",
+  "info": {
+    "name": "coupon",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "CouponName": {
+      "type": "string"
+    },
+    "CouponID": {
+      "type": "string"
+    },
+    "CouponDiscount": {
+      "type": "decimal"
+    },
+    "CouponStartDate": {
+      "type": "date"
+    },
+    "CouponEndDate": {
+      "type": "date"
+    },
+    "LifeTime": {
+      "type": "boolean"
+    }
+  }
+}

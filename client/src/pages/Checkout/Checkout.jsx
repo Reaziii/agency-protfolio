@@ -11,6 +11,7 @@ import PopOver from "../../components/PopOver/PopOver";
 import TextField from "@material-ui/core/TextField";
 import axios from 'axios';
 import {defaultheaders} from '../../utils/axios.common.header'
+import Coupon from "../AddCoupon/Coupon";
 const Checkout = ({
   customDomain,
   userDomain,
@@ -20,7 +21,8 @@ const Checkout = ({
   delteAllItem,
   translation,
   setuser,
-  user
+  user,
+  clearitemsall,
 }) => {
   const [clientId, setClientId] = useState("");
   const [popModel, setPopModel] = useState(false);
@@ -29,6 +31,7 @@ const Checkout = ({
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
+  const [coupon,setcoupon] = useState({});
   const [emailCheck, setEmailCheck] = useState({
     id: "outlined-basic",
   });
@@ -46,13 +49,14 @@ const Checkout = ({
   var e =  new Date();
   const nowdate = new Date;
   const [domainprice,setDomainPrice] = useState(0);
-  const [dip,setDip] = useState('');
+  const [dip,setDip] = useState(false);
   const [SsL,setSsl] = useState('Free SSL');
   const [hostingprice,setHostingprice] = useState(hostingPack.Price);
   const [registered,setregistered] = useState(0);
   const [u__id,setu__id] = useState(null);
   const [sslprice,setsslprice] = useState(0);
   const [Dedicated_IPprice,setDedicatedIpprice] = useState(0);
+  
   useEffect(()=>{
     if(user){
       setFirstName(user.FullName);
@@ -73,6 +77,17 @@ const Checkout = ({
       if(cartItem[i].Package_Name_English==="SSL - GlobalSign & Wildcard") {
         setSsl('SSL - GlobalSign & Wildcard');
         setsslprice(cartItem[i].Price);
+      }
+      if(cartItem[i].Features_English){
+        if(cartItem[i].Billing_Year===1){
+          setHostingprice(cartItem[i].Price)
+        }
+        else if(cartItem[i].Billing_Year===2){
+          setHostingprice(cartItem[i].Two_Year_Package_Price);
+        }
+        else if(cartItem[i].Billing_Year===3){
+          setHostingprice(cartItem[i].Three_Year_Package_Price)
+        }
       }
       
     }
@@ -145,14 +160,15 @@ const Checkout = ({
       Dedicated_IP_Request : dip,
       SSL_Issuer_Name : SsL,
       Delivered: false,
-      HostingRecurringAmmount : hostingprice,
+      HostingRecurringAmmount : (hostingprice*12*hostingPack.Billing_Year).toFixed(2),
       UserID__ : u__id, 
       Dedicated_IP_Price : Dedicated_IPprice,
       SSL_Price : sslprice,
+      CouponName : coupon.CouponID?coupon.CouponID:null,
+      Discount : coupon.CouponID?coupon.CouponDiscount:null,
 
       
     } 
-    console.log(order_details)   
 
     await fetch(`${process.env.REACT_APP_BACKEND_URL}/orders`, {
       method: "POST",
@@ -163,7 +179,7 @@ const Checkout = ({
       body: JSON.stringify(order_details),
     })
       .then((data) => {
-        console.log(data)
+        clearitemsall();
       })
       .catch((error) => {
          alert('You can ask for refund...Please contact us')
@@ -174,7 +190,6 @@ const Checkout = ({
 
 
   }
-  
 
   let history = useHistory();
 
@@ -203,7 +218,7 @@ const Checkout = ({
     }
   };
   const priceCounter = (items) => {
-    return items.reduce((accumulator, currentValue) => {
+    var ret = items.reduce((accumulator, currentValue) => {
       if (
         Object.prototype.hasOwnProperty.call(
           currentValue,
@@ -219,6 +234,9 @@ const Checkout = ({
         return accumulator + currentValue.Price;
       }
     }, 0);
+
+    if(coupon.CouponDiscount)ret = ret-(coupon.CouponDiscount/100*ret);
+    return ret.toFixed(2);
   };
 
 
@@ -289,11 +307,10 @@ const Checkout = ({
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success:", data);
         history.push("/");
       })
       .catch((error) => {
-        console.error("Error:", error);
+        alert('something is wrong')
       });
   };
 
@@ -462,6 +479,21 @@ const Checkout = ({
                   </div>
                 ))
               : null}
+              {coupon.CouponDiscount?
+                <div style={{
+                  display : 'flex',
+                  justifyContent : 'space-between'
+                }}>
+                <p>discount
+                  
+                </p>
+                <p>{coupon.CouponDiscount}%</p>
+                </div>
+
+
+                :null
+
+              }
 
             <hr />
 
@@ -499,14 +531,18 @@ const Checkout = ({
             ) : null}
 
             {registered?
-              // <PayPalButton
+              <div>
+              {// <PayPalButton
               //   price={priceCounter(cartItem)}
               //   clientId={clientId}
               //   onCancel={onCancel}
               //   onSuccess={onSuccess}
               //   onError={onError}
               // />
+            }
+            <Coupon setcoupon={setcoupon}/>
               <button onClick={oncheckoutdone}>checkout</button>
+              </div>
               :null
             }
 
@@ -655,6 +691,9 @@ const mapDisPatchToProps = (dispatch) => ({
   setuser : (details) => dispatch({
     type : 'LOGIN',
     payload : details,
+  }),
+  clearitemsall : () => dispatch({
+    type : 'CLEAR_ALL_ITEM',
   })
 });
 

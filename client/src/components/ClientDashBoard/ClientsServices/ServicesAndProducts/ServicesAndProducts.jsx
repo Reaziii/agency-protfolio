@@ -56,19 +56,20 @@ const ServicesAndProducts = ({searchfield}) => {
 
                     })
                 } 
+                if(value.SSL_Issuer_Name && value.SSL_Issuer_Name.length){
+                    temp.push({
+                        name : value.SSL_Issuer_Name,
+                        linkname : value.DomainName,
+                        link : null,
+                        pricing : value.SSL_Price,
+                        status : value.Delivered?value.SSL_IsActive:2,
+                        product_id : value.id,
+                        nextduedata : ' - ',
+                        type : 3,
 
-                temp.push({
-                    name : value.SSL_Issuer_Name,
-                    linkname : value.DomainName,
-                    link : null,
-                    pricing : value.SSL_Price,
-                    status : value.Delivered?value.SSL_IsActive:2,
-                    product_id : value.id,
-                    nextduedata : ' - ',
-                    type : 3,
 
-
-                })
+                    })
+                }
                 if(value.Dedicated_IP){
                     temp.push({
                         name : 'Dedicated IP',
@@ -160,7 +161,7 @@ const ServicesAndProducts = ({searchfield}) => {
                     { 
                         productlist.map((data,i)=>{
                             if(show){
-                                if(data.status===true && data.name.toLowerCase().includes(searchfield.toLowerCase())){
+                                if(data.status===true && data.name &&  data.name.toLowerCase().includes(searchfield.toLowerCase())){
                                     return <SingleProduct key={i} id={j++} data={data}/>
     
                                 }else return <div></div>

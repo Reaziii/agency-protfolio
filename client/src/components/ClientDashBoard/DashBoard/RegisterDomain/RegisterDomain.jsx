@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import './RegisterDomain.css'
-const RegisterDomain = () => {
+const RegisterDomain = ({setdomain}) => {
+    const [domain,setdomainn] = useState('');
+    const history = useHistory();
+    const goodbye = ()=>{
+        if(domain.length===0) return 0;
+        setdomain(domain);
+        history.push('/domainregister')
+
+    }
     return (
         <div className="registerdomain">
             <div className='title'>
                 Register a New Domain
             </div>
             <div className='form'>
-                <input />
+                <input onChange={(e)=>setdomainn(e.target.value)} />
                 <div className='buttona'> 
-                <button style={{background:'#6cc540'}}>Transfer</button>
-                <button style={{background:'#7c9bf9'}}>Register</button>
+                <button onClick={goodbye} style={{background:'#7c9bf9',width:'100%'}}>search</button>
                 </div>
             </div>
             
@@ -18,4 +27,10 @@ const RegisterDomain = () => {
     );
 };
 
-export default RegisterDomain;
+const set = dispatch =>({
+    setdomain : (value) => dispatch({
+        type : 'DASHBOARD_DOMAIN_REGISTER',
+        payload : value,
+    })
+})
+export default connect(null,set)(RegisterDomain);

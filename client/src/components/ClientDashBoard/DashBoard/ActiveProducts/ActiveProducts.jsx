@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { defaultheaders } from '../../../../utils/axios.common.header';
 import './ActiveProducts.css'
 import Spinner from '../../../Spinner/Spinner'
+import { CircularProgress } from '@material-ui/core';
 const ActiveProducts = () => {
     const [loading,setloding] = useState(1);
     const [active_product_list,setActive_Product_list] = useState([]);
@@ -57,8 +58,16 @@ const ActiveProducts = () => {
     },[])
     
     if(loading){
-        return (<Spinner/>)
-    }
+        return (<div
+            style={{
+                display:'flex',
+                justifyContent:'center',
+                height:'200px',
+                alignItems:'center'
+                
+            }}
+            ><CircularProgress /></div>)
+      }
     return (
         <div className='active-products'>
             <div className='title'>
