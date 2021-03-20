@@ -10150,7 +10150,10 @@ div[class^='bg-black'] .border-all, div[class^='bg-black'] .border-top, div[clas
 .ultakor .dd_td{
   padding-right: 20px;
 }
-
+.ultakor .drx_in i{
+  margin-left: 30px;
+  margin-right: 0px;
+}
 @media only screen and (max-width: 1200px){
   .ultakor .dash-body{
     margin-right: 0px!important;

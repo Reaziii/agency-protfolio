@@ -14,7 +14,7 @@ const ManagingHosting = () => {
     return (
         <div className='clinetservices'>
             <div className='top-com'>
-                <div className='title'><h1>{translation?'Managing':'ניהול אירוח'} {product_details.name}</h1>
+                <div className='title'><h1>{translation?'Managing Hosting':'ניהול אירוח'} {product_details.name}</h1>
                 <p style={{letterSpacing:'1px'}}>
                 <Link to='/'>Portal Home</Link> /
                 <Link to='/dashboard'> Client Area</Link> / <Link to="">My Products & ClientServices</Link> / {product_details.name}
