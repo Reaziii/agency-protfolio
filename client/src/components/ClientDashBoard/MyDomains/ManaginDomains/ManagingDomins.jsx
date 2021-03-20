@@ -4,11 +4,15 @@ import {useParams,Link} from 'react-router-dom'
 import { defaultheaders } from '../../../../utils/axios.common.header';
 import SearchBox from '../../ClientsServices/SearchBox/SearchBox'
 import Spinner from '../../../Spinner/Spinner'
+import {RenewItemDomain} from '../../newcart/RenewItem'
 import './ManagingDomains.css'
+import { useSelector } from 'react-redux';
 const ManagingDomins = () => {
+    const translation = useSelector(state=>state.pages.translation)==='English';
     var id = useParams().domainname;
     const [loding,setisloading] = useState(true);
     const [domaindetails,setdomaindetails] = useState({});
+    const [tab,settab] = useState(0);
     id = Number(id);
     useEffect(()=>{
         defaultheaders();
@@ -27,6 +31,8 @@ const ManagingDomins = () => {
                 SSL_Issuer_name : res.data.SSL_Issuer_Name,
                 SSL_expiry_date : res.data.SSL_ExpiryDate,
                 status : res.data.Delivered?res.data.DomainIsActive:2,
+                order_id : res.data.Order_ID,
+                UserID__ : res.data.UserID__,
             }
             setdomaindetails(details)
             console.log(details)
@@ -46,7 +52,7 @@ const ManagingDomins = () => {
     return (
         <div className="manage-domains">
         <div className='top-com'>
-            <div className='title'><h1>Managing {domaindetails.name}</h1>
+            <div className='title'><h1>{translation?'Managing':'ניהול'} {domaindetails.name}</h1>
             <p style={{letterSpacing:'1px'}}>
             <Link to='/'>Portal Home</Link> /
             <Link to='/dashboard'> Client Area</Link> / <Link to="/dashboard/mydomains">My Domains </Link> / {domaindetails.name}
@@ -58,21 +64,31 @@ const ManagingDomins = () => {
         <div className="dd_xs">
             <div className="dd_mg">
                 <div className="dd_mt">
-                    Manage
+                    {translation?'Actions':'פעולות'} 
+                </div>
+                <div className="ult_yy">
+                    <ul>
+                        <li className={!tab?'active-li':null} onClick={()=>settab(0)}><i class="fas fa-angle-double-right"></i>  {translation?'Information':'מֵידָע'}</li>
+                        <li className={tab?'active-li':null} onClick={()=>settab(1)}><i class="fas fa-angle-double-right"></i>  {translation?'Renew':'לְחַדֵשׁ'}</li>
+                        <a href="/domainregister"><li>{translation?'Register new domain':'רשום תחום חדש'}</li></a>
+                    
+                    </ul>
+                
                 </div>
             
             </div>
-
+            
             <div className="dd_mgm">
                 <div className="dd_mgm_title">
-                    overview
+                    {translation?'overview':'סקירה כללית'}
                 </div>
                 <div className="_d_flex__">
                     <div className="dd_atff">
+                    {tab?<RenewItemDomain itemdetails={domaindetails}/>:
                         <div className="dd_atf_blackBox">
                             <i class="fas fa-globe"></i>
                             <p className="__dd__name__">{domaindetails.name}</p>
-                            <p className="_dd_box_status__">Status : 
+                            <p className="_dd_box_status__">{translation?'Status : ':'סטטוס : '}
                                 {
                                     domaindetails.status?
                                     <p className="_dd_active_">{domaindetails.status===2?'pending':'active'}</p>
@@ -84,29 +100,31 @@ const ManagingDomins = () => {
                             
                             </p>
                         </div>
+                    }
+
                     
                     </div>
 
                     <div className="dd_atss">
                         <div className="fake_dd_atss">
                             <div className="dd_sec_pxx">
-                                <p>Registration Date : </p>
+                                <p>{translation?'Registration Date :':'תאריך רישום :'} </p>
                                 <p>{domaindetails.Registration_data}</p>
                             </div>
                             <div className="dd_sec_pxx">
-                                <p>Next Due Date : </p>
+                                <p>{translation?'Next Due Date :':'תאריך היעד הבא:'} </p>
                                 <p>{domaindetails.Next_due_data}</p>
                             </div>
                             <div className="dd_sec_pxx">
-                                <p>First Payment Ammount : </p>
-                                <p>{domaindetails.First_payment_ammount} $</p>
+                                <p>{translation?'First Payment Ammount :':'סכום תשלום ראשון:'} </p>
+                                <p>${domaindetails.First_payment_ammount} USD</p>
                             </div>
                             <div className="dd_sec_pxx">
-                                <p>Recurring Ammount : </p>
-                                <p>{domaindetails.Recurring_ammount} $</p>
+                                <p>{translation?'Recurring Ammount :':'סכום חוזר:'} </p>
+                                <p>${domaindetails.Recurring_ammount} USD</p>
                             </div>
                             <div className="dd_sec_pxx">
-                                <p>Payment Method : </p>
+                                <p>{translation?'Payment Method :':'אמצעי תשלום :'} </p>
                                 <p>paypal</p>
                             </div>
                         </div>
@@ -122,7 +140,7 @@ const ManagingDomins = () => {
                         <table className="dd_table_ssl">
                             <tr className="dd_tr">
                                 <td className="dd_td">
-                                    SSL Status : 
+                                    {translation?'SSL Status : ':'סטטוס SSL:'}
                                 </td>
                                 <td className="dd_td">
                                     {domaindetails.SSL_status}
@@ -130,7 +148,7 @@ const ManagingDomins = () => {
                             </tr>
                             <tr className="dd_tr">
                                 <td className="dd_td">
-                                    SSL Start Date : 
+                                    {translation?'SSL Start Date : ':'תאריך התחלה של SSL:'}
                                 </td>
                                 <td className="dd_td">
                                     {domaindetails.SSL_start_Date}
@@ -138,7 +156,7 @@ const ManagingDomins = () => {
                             </tr>
                             <tr className="dd_tr">
                                 <td className="dd_td">
-                                    SSL Issuer Name : 
+                                    {translation?'SSL Issuer Name :':'שם מנפיק SSL:'} 
                                 </td>
                                 <td className="dd_td">
                                     {domaindetails.SSL_Issuer_name}
@@ -146,7 +164,7 @@ const ManagingDomins = () => {
                             </tr>
                             <tr style={{borderBottom:'none'}} className="dd_tr">
                                 <td className="dd_td">
-                                    SSL Expiry Date : 
+                                    {translation?'SSL Expiry Date : ':'תאריך תפוגה של SSL:'}
                                 </td>
                                 <td className="dd_td">
                                     {domaindetails.SSL_expiry_date}
@@ -162,6 +180,7 @@ const ManagingDomins = () => {
                 </div>
 
             </div>
+
 
             
         

@@ -4,10 +4,12 @@ import { defaultheaders } from '../../../../utils/axios.common.header';
 import './ActiveProducts.css'
 import Spinner from '../../../Spinner/Spinner'
 import { CircularProgress } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 const ActiveProducts = () => {
     const [loading,setloding] = useState(1);
     const [active_product_list,setActive_Product_list] = useState([]);
     const [product_list,setProductList] = useState([])
+    const translation = useSelector(state=>state.pages.translation);
     useEffect(()=>{
         defaultheaders();
         axios.get(process.env.REACT_APP_BACKEND_URL+'/orders').then(res=>{
@@ -71,7 +73,7 @@ const ActiveProducts = () => {
     return (
         <div className='active-products'>
             <div className='title'>
-                Your Active Products/Services
+                {translation==='English'?'Your Active Products/Services' : 'המוצרים / שירותים הפעילים שלך'}
             </div>
             <div className='active-product-list'>
                 {

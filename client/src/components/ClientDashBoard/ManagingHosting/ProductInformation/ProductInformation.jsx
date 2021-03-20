@@ -6,18 +6,29 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Spinner from '../../../Spinner/Spinner'
 import { defaultheaders } from '../../../../utils/axios.common.header';
-const ProductInformation = ({}) => {
+import { RenewItemHosting } from '../../newcart/RenewItem';
+import { useSelector } from 'react-redux';
+const ProductInformation = ({showing}) => {
+    const translation = useSelector(s=>s.pages.translation)==='English'
     const [selecteditem,setSelecteditem] = useState(1);
     const productid = useParams().productid;
     const [loading,setloading] = useState(1);
     const [product_details,setPdt] = useState({});
-
+    const [itemdess,setitemdess] = useState({});
     useEffect(()=>{
         defaultheaders();
         axios.get(process.env.REACT_APP_BACKEND_URL+'/orders/'+productid).then(res=>{
             const data = res.data;
             var temp = {};
             var Nameservers = [];
+            setitemdess({
+                order_id: data.Order_ID,
+                UserID__ : data.UserID__,
+                name : data.HostingName,
+                Recurring_ammount : data.HostingRecurringAmmount,
+                billing : data.HostingBillingCycle,
+                Next_due_data : data.HostingNextDueDate
+            })
             if(data.HostingNameServers) Nameservers = data.HostingNameServers.split(' ');
             temp = {
                 name : data.HostingName,
@@ -50,6 +61,7 @@ const ProductInformation = ({}) => {
                     used : '102030M',
                 }
             }
+            console.log(data)
 
             setPdt(temp)
             setloading(false)
@@ -65,11 +77,12 @@ const ProductInformation = ({}) => {
     if(loading){
         return (<Spinner/>)
     }
-
+    console.log(showing)
   
     return (
         <div className="productinformation">
             <div className="p_ffss">
+                { showing?<RenewItemHosting itemdetails={itemdess}/>:
                 <div className="p_ff">
                     <div className="p_box">
                         <div className="active-status">
@@ -131,14 +144,16 @@ const ProductInformation = ({}) => {
                     </div>
                 </div>
 
+                }
+
                 <div className="p_ss">
                     <div className="billinghostingsec">
-                        <p onClick={()=>setSelecteditem(1)} className={selecteditem?"billactive":null}>
+                        <p id="ok_tx" onClick={()=>setSelecteditem(1)} className={selecteditem?"billactive":null}>
                         
-                        <i class="fas fa-wallet"></i>  Billing Information
+                        <i class="fas fa-wallet"></i>  {translation?'Billing Information':'פרטי חיוב'}
                         </p>
-                        <p onClick={()=>setSelecteditem(0)} className={!selecteditem?"billactive":null}>
-                        <i class="fas fa-map-marker-alt"></i> Hosting Information
+                        <p id="ok_tx" onClick={()=>setSelecteditem(0)} className={!selecteditem?"billactive":null}>
+                        <i class="fas fa-map-marker-alt"></i> {translation?'Hosting Information':'אירוח מידע'}
                        
                         </p>
                     </div>

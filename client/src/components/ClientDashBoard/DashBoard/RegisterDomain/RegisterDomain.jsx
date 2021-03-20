@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import './RegisterDomain.css'
 const RegisterDomain = ({setdomain}) => {
+    const translation = useSelector(state=>state.pages.translation);
     const [domain,setdomainn] = useState('');
     const history = useHistory();
     const goodbye = ()=>{
@@ -14,12 +15,12 @@ const RegisterDomain = ({setdomain}) => {
     return (
         <div className="registerdomain">
             <div className='title'>
-                Register a New Domain
+                {translation==='English'?'Register a New Domain':'רשום דומיין חדש'}
             </div>
             <div className='form'>
                 <input onChange={(e)=>setdomainn(e.target.value)} />
                 <div className='buttona'> 
-                <button onClick={goodbye} style={{background:'#7c9bf9',width:'100%'}}>search</button>
+                <button onClick={goodbye} style={{background:'#7c9bf9',width:'100%'}}> {translation==='English'?'search':'לחפש'}</button>
                 </div>
             </div>
             

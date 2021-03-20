@@ -2,60 +2,51 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/orders",
-      "handler": "orders.find",
+      "path": "/renew-requests",
+      "handler": "renew-request.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/orders/count",
-      "handler": "orders.count",
+      "path": "/renew-requests/count",
+      "handler": "renew-request.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/orders/:id",
-      "handler": "orders.findOne",
+      "path": "/renew-requests/:id",
+      "handler": "renew-request.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/orders",
-      "handler": "orders.create",
+      "path": "/renew-requests",
+      "handler": "renew-request.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/orders/:id",
-      "handler": "orders.update",
+      "path": "/renew-requests/:id",
+      "handler": "renew-request.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/orders/:id",
-      "handler": "orders.delete",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/orders/renew/:id",
-      "handler": "orders.renew",
+      "path": "/renew-requests/:id",
+      "handler": "renew-request.delete",
       "config": {
         "policies": []
       }
     }
-    
   ]
 }

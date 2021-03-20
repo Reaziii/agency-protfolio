@@ -77,9 +77,6 @@
     "Dedicated_IP": {
       "type": "string"
     },
-    "Dedicated_IP_Active": {
-      "type": "boolean"
-    },
     "UserID__": {
       "type": "integer"
     },

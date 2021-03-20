@@ -5,7 +5,9 @@ import SingleProduct from './Single/SingleProduct';
 import useComponentVisible from '../../../customhook/useCom';
 import axios from 'axios';
 import { defaultheaders } from '../../../../../utils/axios.common.header';
+import { useSelector } from 'react-redux';
 const ServicesAndProducts = () => {
+    const translation = useSelector(state=>state.pages.translation)==='English';
     const [selectedlist,setSelectedlist] = useState("All Entries");
     const { ref, isComponentVisible,setIsComponentVisible } = useComponentVisible(true);
     const [show,setshow] = useState(0);
@@ -65,7 +67,7 @@ const ServicesAndProducts = () => {
         <div className="servicesandproducts">
             <div className="services-view">
                 <div className="d_flex">
-                <level>View</level> 
+                <level>{translation?'View':'נוף'}</level> 
                     <div  ref={ref} onClick={()=>setIsComponentVisible(true)} class="dropdowns">
                         <button onClick={dropdown} class="dropdown-toggles">
                             {selectedlist} <i class="fas fa-caret-down"></i>
@@ -88,7 +90,7 @@ const ServicesAndProducts = () => {
                 <table className="table">
                     <tr className="tr1">
                         <td className="product-sevices">
-                            Product/Services 
+                            {translation?'Domains':'תחומים'} 
                                 <div  style={{display:'none'}} className="up-down-sec">
                                     <i  class="fas fa-caret-up up activeupdown"></i>
                                     <i class="fas fa-caret-down down"></i>
@@ -96,14 +98,14 @@ const ServicesAndProducts = () => {
                         
                         </td>
                         <td className="pricing width">
-                            Pricing
+                            {translation?'Pricing':'תמחור'}
                             <div style={{display:'none'}} className="up-down-sec">
                                     <i class="fas fa-caret-up up"></i>
                                     <i class="fas fa-caret-down down"></i>
                             </div>
                         </td>
                         <td style={{width:'20%'}} className="next-due-date width">
-                            Next Due Date
+                            {translation?'Next Due Date':'תאריך היעד הבא'}
                             <div  style={{display:'none'}} className="up-down-sec">
                                     <i class="fas fa-caret-up up"></i>
                                     <i class="fas fa-caret-down down"></i>
@@ -111,7 +113,7 @@ const ServicesAndProducts = () => {
                         </td>
                         <td style={{width:'10%'}} className="status width">
                             
-                            Status
+                            {translation?'Status':'סטָטוּס'}
                             <div  style={{display:'none'}} className="up-down-sec">
                                     <i class="fas fa-caret-up up"></i>
                                     <i class="fas fa-caret-down down"></i>

@@ -1,5 +1,6 @@
 import React from 'react';
 import OwlCarousel from 'react-owl-carousel3';
+import { useSelector } from 'react-redux';
 import ActiveProducts from '../ActiveProducts/ActiveProducts';
 import DetailCountComponent from '../DetailCountComponent/DetailCountComponent';
 import InfoSection from '../InfoSection/InfoSection';
@@ -7,11 +8,11 @@ import RegisterDomain from '../RegisterDomain/RegisterDomain';
 import ShortcutSection from '../ShortctsSection/ShortcutSection';
 import './DashBoardBody.css'
 const DashBoardBody = () => {
-    
+    const translation = useSelector(state=>state.pages.translation)
     return (
         <div className='dash-body res'>
             <div className='title'>
-                <h1>My Dashboard</h1>
+                <h1>{translation==='English'?'My Dashboard':'לוח המחוונים שלי'}</h1>
                 <p><a href='/'>Portal Home</a> / Client Area</p>
 
                             

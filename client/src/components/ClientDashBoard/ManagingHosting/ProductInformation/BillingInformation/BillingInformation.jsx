@@ -1,12 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import './BillingInformation.css'
 const BillingInformation = ({details}) => {
+    const translation = useSelector(state=>state.pages.translation)==='English';
     return (
         <div className="billinginfo">
             <table className="t_xx">
                 <tr>
                     <td>
-                    Registration Date
+                    {translation?'Registration Date':'תאריך רישום'}
 
                     </td>
                     <td>
@@ -17,7 +19,7 @@ const BillingInformation = ({details}) => {
                 </tr>
                 <tr>
                     <td>
-                    Recurring Amount 
+                    {translation?'Recurring Amount ':'סכום חוזר'}
 
                     </td>
                     <td>
@@ -28,7 +30,7 @@ const BillingInformation = ({details}) => {
                 </tr>
                 <tr>
                     <td>
-                        Next Due Date 
+                       {translation?'Next Due Date':'תאריך היעד הבא'} 
 
                     </td>
                     <td>
@@ -39,7 +41,7 @@ const BillingInformation = ({details}) => {
                 </tr>
                 <tr>
                     <td>
-                        Billing Cycle
+                        {translation?'Billing Cycle':'מחזור חיוב'}
 
                     </td>
                     <td>
@@ -50,7 +52,7 @@ const BillingInformation = ({details}) => {
                 </tr>
                 <tr>
                     <td>
-                     Payment Method
+                     {translation?'Payment Method':'אמצעי תשלום'}
 
                     </td>
                     <td>

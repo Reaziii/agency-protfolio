@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './DashBoardNav.css'
 import {NavLink, Route} from 'react-router-dom'
+import { connect, useSelector } from 'react-redux';
 
-const DashBoardNav = () => {
+const DashBoardNav = ({changetr}) => {
+    // changetr();
+    const translation = useSelector(state=>state.pages.translation);
     const [open,setOpen] = useState(false);
     const [logo,setLogo] = useState(null);
     const [nologo,setNologo] = useState(true);
@@ -50,10 +53,9 @@ const DashBoardNav = () => {
             <div className='dash-nav'>
 
                 <ul>
-                    <NavLink activeClassName='active-dash-nav' exact to='/dashboard'><li><i className="fas fa-home"></i><p>Home</p></li></NavLink>
-                    <NavLink activeClassName='active-dash-nav' exact to="/dashboard/services"><li><i className="fas fa-cloud"></i><p>My cloud</p></li></NavLink>
-                    <NavLink activeClassName='active-dash-nav' exact to='/dashboard/mydomains'><li><i class="fas fa-globe"></i><p>Domains</p></li></NavLink>
-                    <NavLink activeClassName='active-dash-nav' exact to='/dashboard'><li style={{border:'none'}}><i className="fas fa-home"></i><p>Home</p></li></NavLink>
+                    <NavLink activeClassName='active-dash-nav' exact to='/dashboard'><li><i className="fas fa-home"></i><p>{translation==='English'?'Home':'בית'}</p></li></NavLink>
+                    <NavLink activeClassName='active-dash-nav' exact to="/dashboard/services"><li><i className="fas fa-cloud"></i><p>{translation==='English'?'My Cloud':'הענן שלי'}</p></li></NavLink>
+                    <NavLink activeClassName='active-dash-nav' exact to='/dashboard/mydomains'><li><i class="fas fa-globe"></i><p>{translation==='English'?'Domains':'תחומים'}</p></li></NavLink>
 
 
                 </ul>
@@ -61,5 +63,10 @@ const DashBoardNav = () => {
         </div>
     );
 };
-
-export default DashBoardNav;
+const set = dispatch=>({
+    changetr : ()=>dispatch({
+        type : 'CHANGE_TRANSLATION',
+        payload : 'English',
+    })
+})
+export default connect(null,set)(DashBoardNav);

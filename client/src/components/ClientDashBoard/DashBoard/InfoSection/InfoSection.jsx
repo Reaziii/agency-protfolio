@@ -1,7 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import './InfoSections.css'
 const InfoSection = ({user}) => {
+    const translation = useSelector(state=>state.pages.translation);
     console.log(user)
     const details = {
         name : user.FullName,
@@ -15,7 +16,7 @@ const InfoSection = ({user}) => {
     return (
         <div className='info-sec'>
             <h2>
-                Your Info
+                {translation==='English'?'Your Info':'המידע שלך'}
             </h2>
             <p style={{textTransform:'capitalize'}}>
                 {details.name}

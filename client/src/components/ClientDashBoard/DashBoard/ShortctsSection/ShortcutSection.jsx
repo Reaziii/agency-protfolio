@@ -1,18 +1,21 @@
 import React from 'react';
 import './Shortcutsections.css'
-import {connect} from 'react-redux'
+import {connect, useSelector} from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { defaultheaders } from '../../../../utils/axios.common.header';
 const ShortcutSection = ({logout}) => {
+    const translation = useSelector(state=>state.pages.translation);
     const shotcuts = [
         {
             name : 'Register new domain',
             icon : '',
-            link : '/',
+            link : '/domainregister',
+            sname : 'רשום תחום חדש'
         },{
             name : ' Log out',
             icon : <i class="fas fa-sign-out-alt"></i>,
-            link : '/'
+            link : '/',
+            sname : 'רשום תחום חדש'
         }
 
     ]
@@ -28,16 +31,16 @@ const ShortcutSection = ({logout}) => {
     return (
         <div className='scut-sec'>
             <div className='shortcuttitle'>
-                Shortcuts
+                {translation==='English'?'Shortcuts':'קיצורי דרך'}
                 
 
             </div>
             <div className='shortcuts'>
-                        <a  href={shotcuts[0].line} className=''>
+                        <a  href={shotcuts[0].link} className=''>
                             <div className='shortcutss'>
                             
                                     {shotcuts[0].icon}
-                                    {shotcuts[0].name}
+                                    {translation==='English'?shotcuts[0].name:shotcuts[0].sname}
                             </div>
                         </a>
 
@@ -45,7 +48,7 @@ const ShortcutSection = ({logout}) => {
                             <div className='shortcutss'>
                             
                                     {shotcuts[1].icon}
-                                    {shotcuts[1].name}
+                                    {translation==='English'?shotcuts[1].name:shotcuts[1].sname}
                             </div>
                         </a>
 

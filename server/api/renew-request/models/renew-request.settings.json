@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "renew_requests",
+  "info": {
+    "name": "Renew Request",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "OldOrder_ID": {
+      "type": "string"
+    },
+    "OrderName": {
+      "type": "string"
+    },
+    "NextPaymentDate": {
+      "type": "date"
+    },
+    "Total": {
+      "type": "decimal"
+    },
+    "UserID": {
+      "type": "integer"
+    }
+  }
+}

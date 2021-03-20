@@ -532,16 +532,20 @@ const Checkout = ({
 
             {registered?
               <div>
-              {// <PayPalButton
-              //   price={priceCounter(cartItem)}
-              //   clientId={clientId}
-              //   onCancel={onCancel}
-              //   onSuccess={onSuccess}
-              //   onError={onError}
-              // />
-            }
+                
             <Coupon setcoupon={setcoupon}/>
-              <button onClick={oncheckoutdone}>checkout</button>
+            <div style={{
+              width:'100%',
+              display:'flex',
+              justifyContent:'center'
+            }}>
+              <PayPalButton
+                price={priceCounter(cartItem)}
+                onCancel={onCancel}
+                onSuccess={oncheckoutdone}
+                onError={onError}
+              />
+            </div>
               </div>
               :null
             }

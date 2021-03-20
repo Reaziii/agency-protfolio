@@ -10091,3 +10091,87 @@ div[class^='bg-black'] .border-all, div[class^='bg-black'] .border-top, div[clas
 
 
 
+.ultakor .dash-body{
+  margin-right: 132px;
+  margin-left: 0px;
+  padding-right : 0px;
+  padding-right: 40px;
+}
+.ultakor i{
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+
+.ultakor .active-products .title{
+  padding-left: 0px;
+  padding-right: 20px;
+}
+.ultakor .individual-item{
+  padding-left: 0px;
+  padding-right: 20px;
+}
+.ultakor .active-dot{
+  left : 5%;
+  transform : translate(-5%,-20%);
+}
+.ultakor .clinetservices{
+  margin-left: 0px;
+  margin-right: 132px;
+}
+.ultakor .servicesandproducts .services-view{
+  padding-right: 15px;
+}
+
+.ultakor .servicesandproducts .drop-down-menues li{
+  padding-right: 20px;
+}
+.ultakor .status-dot{
+  margin-left: 10px;
+}
+.ultakor .mydomains{
+  margin-right: 132px;
+  margin-left: 0px;
+}
+.ultakor .manage-domains{
+  margin-left: 0px;
+  margin-right : 132px;
+}
+
+
+.ultakor #ok_tx {
+  text-align: right;
+}
+.ultakor .dd_ssl{
+  padding-right: 20px;
+}
+.ultakor .dd_td{
+  padding-right: 20px;
+}
+
+@media only screen and (max-width: 1200px){
+  .ultakor .dash-body{
+    margin-right: 0px!important;
+  }
+  .ultakor .add-plus{
+    left: 20%!important;
+  }
+  .ultakor .dash-nav{
+    left: 100%;
+  }
+  .ultakor .dash-nav ul li p{
+    transform: translate(-12px,0px);
+  }
+  .ultakor .clinetservices{
+    margin-right: 0px;
+  }
+  .ultakor .mydomains{
+    margin-right: 0px;
+  }
+  .ultakor .manage-domains
+  {
+    margin-right: 0px;
+  }
+}

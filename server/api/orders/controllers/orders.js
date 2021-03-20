@@ -14,4 +14,8 @@ module.exports = {
 
     return orders;
   },
+
+  async renew(ctx){
+    return ctx;
+  }
 };

@@ -5,11 +5,13 @@ import SingleProduct from './Single/SingleProduct';
 import useComponentVisible from '../../customhook/useCom';
 import { defaultheaders } from '../../../../utils/axios.common.header';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 const ServicesAndProducts = ({searchfield}) => {
     const [selectedlist,setSelectedlist] = useState("All Entries");
     const { ref, isComponentVisible,setIsComponentVisible } = useComponentVisible(true);
     const [show,setshow] = useState(0);
     const [productlist,setProductList] = useState([]);
+    const translation = useSelector(state=>state.pages.translation)==='English';
     const selectitem = (e,id) =>{
         setIsComponentVisible(true)
 
@@ -70,7 +72,7 @@ const ServicesAndProducts = ({searchfield}) => {
 
                     })
                 }
-                if(value.Dedicated_IP){
+                if(value.Dedicated_IP_Request){
                     temp.push({
                         name : 'Dedicated IP',
                         nextduedata : ' - ',
@@ -100,7 +102,7 @@ const ServicesAndProducts = ({searchfield}) => {
         <div className="servicesandproducts">
             <div className="services-view">
                 <div className="d_flex">
-                <level>View</level> 
+                <level>{translation?'View':'נוף'}</level> 
                     <div  ref={ref} onClick={()=>setIsComponentVisible(true)} class="dropdowns">
                         <button onClick={dropdown} class="dropdown-toggles">
                             {selectedlist} <i class="fas fa-caret-down"></i>
@@ -123,7 +125,7 @@ const ServicesAndProducts = ({searchfield}) => {
                 <table className="table">
                     <tr className="tr1">
                         <td className="product-sevices">
-                            Product/Services 
+                            {translation?'Product/Services ':'מוצר / שירותים'}
                                 <div style={{display:'none'}} className="up-down-sec">
                                     <i  class="fas fa-caret-up up activeupdown"></i>
                                     <i class="fas fa-caret-down down"></i>
@@ -131,14 +133,14 @@ const ServicesAndProducts = ({searchfield}) => {
                         
                         </td>
                         <td className="pricing width">
-                            Pricing
+                            {translation?'Pricing':'תמחור'}
                             <div style={{display:'none'}} className="up-down-sec">
                                     <i class="fas fa-caret-up up"></i>
                                     <i class="fas fa-caret-down down"></i>
                             </div>
                         </td>
                         <td style={{width:'20%'}} className="next-due-date width">
-                            Next Due Date
+                            {translation?'Next Due Date':'תאריך היעד הבא'}
                             <div style={{display:'none'}} className="up-down-sec">
                                     <i class="fas fa-caret-up up"></i>
                                     <i class="fas fa-caret-down down"></i>
@@ -146,7 +148,7 @@ const ServicesAndProducts = ({searchfield}) => {
                         </td>
                         <td style={{width:'10%'}} className="status width">
                             
-                            Status
+                            {translation?'Status':'סטָטוּס'}
                             <div style={{display:'none'}} className="up-down-sec">
                                     <i class="fas fa-caret-up up"></i>
                                     <i class="fas fa-caret-down down"></i>
