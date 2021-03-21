@@ -12,6 +12,16 @@ const UserLogin = ({setuser}) => {
     const [password,setPassword] = useState('');
     const [isloadin,setIsloading] = useState(1);
     const history = useHistory();
+    const [imgurl,setimgurl] = useState('');
+    useEffect(()=>{
+        axios.get(process.env.REACT_APP_BACKEND_URL+'/logo').then(res=>{
+            setimgurl(process.env.REACT_APP_BACKEND_URL+'/'+res.data.Image[0].url
+            )
+        })
+
+
+    },[])
+    console.log(imgurl)
     const handlesubmit = (e) =>{
         e.preventDefault();
         const url = backurl+'/auth/local';
@@ -48,11 +58,11 @@ const UserLogin = ({setuser}) => {
             </div>
             <div className="ad_boxx">
                
-                <div className="title3">
-                    Title
+                <div style={{paddingBottom:'4px'}} className="title3">
+                    <img  src={imgurl} alt="logo"/>
                 </div>
                 <form>
-                    <level  className="username-login-level">username </level>
+                    <level  className="username-login-level">email </level>
                     <input type="text" name="username" onChange={(e)=>setUsername(e.target.value)}/>
                     <level className="password-login-level">password </level>
                     <input type="password" name="password" onChange={(e)=>setPassword(e.target.value)}/>
