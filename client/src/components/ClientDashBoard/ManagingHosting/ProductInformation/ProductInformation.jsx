@@ -8,6 +8,8 @@ import Spinner from '../../../Spinner/Spinner'
 import { defaultheaders } from '../../../../utils/axios.common.header';
 import { RenewItemHosting } from '../../newcart/RenewItem';
 import { useSelector } from 'react-redux';
+import DomainInformation from './DomainInformation/DomainInformation';
+import ConfigInformation from './ConfigInformation/ConfigInformation';
 const ProductInformation = ({showing}) => {
     const translation = useSelector(s=>s.pages.translation)==='English'
     const [selecteditem,setSelecteditem] = useState(1);
@@ -15,12 +17,25 @@ const ProductInformation = ({showing}) => {
     const [loading,setloading] = useState(1);
     const [product_details,setPdt] = useState({});
     const [itemdess,setitemdess] = useState({});
+    const [domaininfo,setdomaininfo] = useState({});
+    const [exinfo,setexinfo] = useState({});
     useEffect(()=>{
         defaultheaders();
         axios.get(process.env.REACT_APP_BACKEND_URL+'/orders/'+productid).then(res=>{
             const data = res.data;
             var temp = {};
             var Nameservers = [];
+            setdomaininfo({
+                domainname : res.data.DomainName?res.data.DomainName:res.data.UserOwnDomain,
+                my : res.data.DomainName?1:0,
+                idx : res.data.id,
+            })
+
+            setexinfo({
+                dedicated_ip : res.data.Dedicated_IP_Request,
+                ssl : res.data.SSL_Issuer_Name
+            })
+
             setitemdess({
                 order_id: data.Order_ID,
                 UserID__ : data.UserID__,
@@ -80,6 +95,7 @@ const ProductInformation = ({showing}) => {
     console.log(showing)
   
     return (
+        <div>
         <div className="productinformation">
             <div className="p_ffss">
                 { showing?<RenewItemHosting itemdetails={itemdess}/>:
@@ -146,9 +162,13 @@ const ProductInformation = ({showing}) => {
 
                 }
 
-                <div className="p_ss">
+                
+            
+            </div>
+
+            <div className="p_ss">
                     <div className="billinghostingsec">
-                        <p id="ok_tx" onClick={()=>setSelecteditem(1)} className={selecteditem?"billactive":null}>
+                        <p id="ok_tx" onClick={()=>setSelecteditem(1)} className={selecteditem===1?"billactive":null}>
                         
                         <i class="fas fa-wallet"></i>  {translation?'Billing Information':'פרטי חיוב'}
                         </p>
@@ -156,13 +176,22 @@ const ProductInformation = ({showing}) => {
                         <i class="fas fa-map-marker-alt"></i> {translation?'Hosting Information':'אירוח מידע'}
                        
                         </p>
+                        <p id="ok_tx" onClick={()=>setSelecteditem(2)} className={selecteditem===2?'billactive':null}>
+                        <i class="fas fa-globe"></i> Domain
+                        </p>
+                        <p id="ok_tx" onClick={()=>setSelecteditem(3)} className={selecteditem===3?'billactive':null}>
+                        <i class="fas fa-tools"></i> Configurable Options
+                        </p>
                     </div>
 
                     {
-                        selecteditem?
+                        selecteditem===1?
                         <BillingInformation details={product_details.billing_overview}/>
-                        :
+                        :selecteditem===0?
                         <HostingInformation details={product_details.Hosting_information}/>
+                        :selecteditem===2?
+                        <DomainInformation domaininfo={domaininfo}/>
+                        :<ConfigInformation info={exinfo}/>
                     }
                     
 
@@ -170,8 +199,7 @@ const ProductInformation = ({showing}) => {
 
 
                 </div>
-            
-            </div>
+        </div>
         </div>
     );
 };

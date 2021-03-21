@@ -1,9 +1,10 @@
 import { CircularProgress } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import PaypalExpressBtn from 'react-paypal-express-checkout';
+import { PayPalButton } from "react-paypal-button-v2";
 
-const PayPalButton = ({onSuccess, onCancel, price, onError }) => {
+
+const PayPalButtonx = ({onSuccess, onCancel, price, onError }) => {
     const [clientId,setclientid] = useState('');
     const [loading,setloading] = useState(1);
     useEffect(()=>{
@@ -24,8 +25,13 @@ const PayPalButton = ({onSuccess, onCancel, price, onError }) => {
         production: 'YOUR-PRODUCTION-APP-ID',
     }
     return (
-        <PaypalExpressBtn client={client} currency={'USD'} total={price} onError={onError} onSuccess={onSuccess} onCancel={onCancel} />
+        <PayPalButton
+        options={{
+            clientId: clientId,
+          }}
+        
+        client={client} currency={'USD'} amount={price} onError={onError} onSuccess={onSuccess} onCancel={onCancel} />
     )
 }
 
-export default PayPalButton
+export default PayPalButtonx

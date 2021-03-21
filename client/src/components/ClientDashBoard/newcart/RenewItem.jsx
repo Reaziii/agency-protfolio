@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { defaultheaders } from '../../../utils/axios.common.header';
-import PayPalButton from '../../PayPal/PayPalButton';
+import PayPalButtonx from '../../PayPal/PayPalButton';
 import { useSelector } from 'react-redux'
 export const RenewItemDomain = ({itemdetails}) => {
     const translation = useSelector(state=>state.pages.translation);
@@ -53,7 +53,7 @@ export const RenewItemDomain = ({itemdetails}) => {
                     }
                 }>
                     {noti.length?noti:
-                    <PayPalButton onSuccess={onsucces} onCancel={oncancel} onError={onerror} price={itemdetails.Recurring_ammount}/>
+                    <PayPalButtonx onSuccess={onsucces} onCancel={oncancel} onError={onerror} price={itemdetails.Recurring_ammount}/>
                     }
                     </div>
             
@@ -113,7 +113,7 @@ export const RenewItemHosting = ({itemdetails}) =>{
                     marginTop:'20px'
                     }
                 }>
-                    <PayPalButton onSuccess={onsucces} onCancel={oncancel} onError={onerror} price={itemdetails.Recurring_ammount}/>
+                    <PayPalButtonx onSuccess={onsucces} onCancel={oncancel} onError={onerror} price={itemdetails.Recurring_ammount}/>
                 </div>
             
             </div>

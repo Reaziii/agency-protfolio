@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import CartItem from "./CartItem/CartItem";
 import { useHistory } from "react-router-dom";
 import { deleteCartItem, deleteAllItem } from "../../Redux/Cart/cart-action";
-import PayPalButton from "../../components/PayPal/PayPalButton";
+import PayPalButtonx from "../../components/PayPal/PayPalButton";
 import PopOver from "../../components/PopOver/PopOver";
 import TextField from "@material-ui/core/TextField";
 import axios from 'axios';
@@ -180,6 +180,7 @@ const Checkout = ({
     })
       .then((data) => {
         clearitemsall();
+        history.push('/dashboard')
       })
       .catch((error) => {
          alert('You can ask for refund...Please contact us')
@@ -539,7 +540,7 @@ const Checkout = ({
               display:'flex',
               justifyContent:'center'
             }}>
-              <PayPalButton
+              <PayPalButtonx
                 price={priceCounter(cartItem)}
                 onCancel={onCancel}
                 onSuccess={oncheckoutdone}

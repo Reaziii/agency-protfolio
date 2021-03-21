@@ -8,12 +8,17 @@ import { updateTranslation } from "../../Redux/Pages/pages-action";
 import { connect } from "react-redux";
 import FormattedText from "../../hooks/FormattedText";
 
-const Header = ({ blackBack, translation, updateTranslation, colors }) => {
+const Header = ({ blackBack, translation, updateTranslation, colors,user }) => {
   const [menus, setMenus] = useState([]);
   const [handleShow, setHandleShow] = useState(false);
   const [favicon, setFavicon] = useState("");
   const [togle, setTogle] = useState(false);
   const [navDropDownToggle, setNavDropDownToggle] = useState(false);
+  const [username,setusername] = useState(user?user.FullName.split(' ')[0]:' ');
+    // if(user){
+    //   setusername(user.FullName.split(' ')[0])
+    // }
+
 
   const dropDownStyle = () => {
     if(translation === 'Hebrew'){
@@ -51,7 +56,14 @@ const Header = ({ blackBack, translation, updateTranslation, colors }) => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/favicon`)
       .then((res) => res.json())
       .then((data) => setFavicon(data.Favicon.url));
+
+
+      
   }, []);
+
+
+
+
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -132,11 +144,19 @@ const Header = ({ blackBack, translation, updateTranslation, colors }) => {
                     }
                   })
                 : null}
+                <li className="nav-item">
+                  {
+                    user?<a className="nav-link" href="/dashboard">{username}</a>:<a className="nav-link" href="/login">Login</a>
+                  }
+               </li>
+                
+
             </ul>
           </div>
 
           <SocialLinks />
 
+          
           <Dropdown>
             <Dropdown.Toggle
               id="dropdown-basic"
@@ -199,9 +219,10 @@ const mapDispatchToProps = (dispatch) => ({
   updateTranslation: (language) => dispatch(updateTranslation(language)),
 });
 
-const mapStateToProps = ({ pages }) => ({
+const mapStateToProps = ({ pages,user }) => ({
   translation: pages.translation,
   colors: pages.colors,
+  user : user.user,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

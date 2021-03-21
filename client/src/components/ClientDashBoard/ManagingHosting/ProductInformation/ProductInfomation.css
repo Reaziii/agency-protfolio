@@ -6,7 +6,6 @@
 .p_ffss {
     width: 100%;
     display: flex;
-    justify-content: space-around;
 }
 
 .p_ff{
@@ -89,7 +88,6 @@
 .productinformation .billinghostingsec{
     width: 100%;
     display: flex;
-    justify-content: space-between;
     border-bottom: 1px solid rgb(228 228 228);
     height: 60px;
     align-items: center;
@@ -97,8 +95,8 @@
     padding: 0px 10px;
 }
 .productinformation .billinghostingsec p{
-    width: 50%;
     text-align: left;
+    padding-right: 30px;
     height: 100%;
     cursor: pointer;
     line-height: 60px;
@@ -113,6 +111,7 @@
 .p_ss{
     box-shadow: 0 0 32px 0 rgb(0 0 0 / 8%);
     padding : 0px 10px;
+    width: 100%;
 }
 .ft-sec{
     width: 45%;
@@ -123,4 +122,33 @@
     width: 55%;
     color: white;
     font-size: 14px;
+}
+
+.abcdef{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.abcdef button{
+    border: 1px solid #183489;
+    padding: 10px 20px;
+    margin : 5px;
+    border-radius: 5px;
+    color : #183489;
+    font-size: 16px;
+    transition: 0.1s;
+}
+.abcdef button:hover{
+    background: #183489;
+    color: white;
+    transition: 0.4s;
+}
+
+.configinfo td{
+    padding: 30px;
+}
+
+.configinfo tr{
+    padding: 0px;
+    border-bottom: 1px solid rgb(224, 224, 224);
 }

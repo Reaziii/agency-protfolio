@@ -90,5 +90,9 @@
     .p_ss{
         width: 100%!important;
     }
+    .productinformation .billinghostingsec{
+        height: auto!important;
+        display: unset!important;
+    }
 
 }

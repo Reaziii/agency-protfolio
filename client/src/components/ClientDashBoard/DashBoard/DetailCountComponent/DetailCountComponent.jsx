@@ -101,7 +101,7 @@ const DetailCountComponent = () => {
             ><CircularProgress /></div>)
       }
     return (
-        <div className='detailcountcomponent'>
+        <div className='detailcountcomponent' dir="ltr">
                 <div className='count-sec'>
                     <OwlCarousel className="partner-slider owl-carousel owl-theme" {...options} >
                 

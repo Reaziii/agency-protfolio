@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { addCartItem } from "../../Redux/Cart/cart-action";
+import axios from 'axios'
 import {
   updateCustomDomain,
   updateUserDomain,
@@ -25,7 +26,18 @@ const Domain = ({
   const [domainNameEmpty, setDomainNameEmpty] = useState(false);
   const [userDomainValidate, setUserDomainValidate] = useState(false);
   const [customDomainValidate, setCustomDomainValidate] = useState(false);
-
+  const [domainprice,setdomainprice] = useState({});
+  const [domainData,setdomainData] = useState({});
+  useEffect(() => {
+    axios.get(process.env.REACT_APP_BACKEND_URL+'/domain-price').then(res=>{
+      setdomainData({
+        id: 11,
+        Package_Name_English: "Domain - Registration",
+        Price: res.data.Price,
+        Type: "custom",
+      })
+    })
+  }, []);
   let history = useHistory();
   const handleCustomDomain = (event) => {
     let re = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/;
@@ -50,12 +62,6 @@ const Domain = ({
   };
   const handleNext = (status) => {
     if (status === "custom") {
-      const domainData = {
-        id: 11,
-        Package_Name_English: "Domain - Registration",
-        Price: 12.99,
-        Type: "custom",
-      };
       addCartItem(domainData);
       updateCustomDomain(customDomainName);
       setSearchStatus(false);

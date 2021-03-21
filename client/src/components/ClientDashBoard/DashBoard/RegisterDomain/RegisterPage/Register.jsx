@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import './style.css'
 import Spinner from '../../../../Spinner/Spinner'
 import axios from 'axios'
-import PayPalButton from '../../../../PayPal/PayPalButton'
+import PayPalButtonx from '../../../../PayPal/PayPalButton'
 import Coupon from '../../../../../pages/AddCoupon/Coupon';
 const Register = ({user,domainal,cleardomain}) => {
     if(!localStorage.getItem('auth_token') || !user){
@@ -200,7 +200,7 @@ const Register = ({user,domainal,cleardomain}) => {
                     display:'flex',
                     justifyContent:'center',
                 }}>
-                <PayPalButton onCancel={oncancel} onError={onError} onSuccess={onSuccess} price={
+                <PayPalButtonx onCancel={oncancel} onError={onError} onSuccess={onSuccess} price={
                     coupon.CouponDiscount?(domainprice-(coupon.CouponDiscount/100*domainprice)).toFixed(2):domainprice
 
 

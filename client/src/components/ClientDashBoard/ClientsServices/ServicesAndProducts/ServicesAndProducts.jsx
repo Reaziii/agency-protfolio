@@ -66,7 +66,7 @@ const ServicesAndProducts = ({searchfield}) => {
                         pricing : value.SSL_Price,
                         status : value.Delivered?value.SSL_IsActive:2,
                         product_id : value.id,
-                        nextduedata : ' - ',
+                        nextduedata : value.SSL_ExpiryDate,
                         type : 3,
 
 
