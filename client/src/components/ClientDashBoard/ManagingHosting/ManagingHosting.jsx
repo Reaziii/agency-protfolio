@@ -6,6 +6,7 @@ import { Switch } from '@material-ui/core';
 import ProductInformation from './ProductInformation/ProductInformation';
 import ProductAddons from './ProductAddons/ProductAddons'
 import { useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 const ManagingHosting = () => {
     const [iscalinfo,setIscalinfo] = useState(1);
     const translation = useSelector(state=>state.pages.translation)==='English'
@@ -13,6 +14,9 @@ const ManagingHosting = () => {
     }
     return (
         <div className='clinetservices'>
+        <Helmet>
+            <title>manage hosting</title>
+        </Helmet>
             <div className='top-com'>
                 <div className='title'><h1>{translation?'Managing Hosting':'ניהול אירוח'} {product_details.name}</h1>
                 <p style={{letterSpacing:'1px'}}>

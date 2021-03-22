@@ -7,6 +7,7 @@ import Spinner from '../../../Spinner/Spinner'
 import {RenewItemDomain} from '../../newcart/RenewItem'
 import './ManagingDomains.css'
 import { useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 const ManagingDomins = () => {
     const translation = useSelector(state=>state.pages.translation)==='English';
     var id = useParams().domainname;
@@ -51,6 +52,9 @@ const ManagingDomins = () => {
     
     return (
         <div className="manage-domains">
+        <Helmet>
+            <title>manage domain</title>
+        </Helmet>
         <div className='top-com'>
             <div className='title'><h1>{translation?'Managing':'ניהול'} {domaindetails.name}</h1>
             <p style={{letterSpacing:'1px'}}>

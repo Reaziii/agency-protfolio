@@ -6,6 +6,7 @@ import useComponentVisible from '../../customhook/useCom';
 import { defaultheaders } from '../../../../utils/axios.common.header';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 const ServicesAndProducts = ({searchfield}) => {
     const [selectedlist,setSelectedlist] = useState("All Entries");
     const { ref, isComponentVisible,setIsComponentVisible } = useComponentVisible(true);
@@ -100,6 +101,9 @@ const ServicesAndProducts = ({searchfield}) => {
     var j = 0;
     return (
         <div className="servicesandproducts">
+        <Helmet>
+            <title>Services and products</title>
+        </Helmet>
             <div className="services-view">
                 <div className="d_flex">
                 <level>{translation?'View':'נוף'}</level> 

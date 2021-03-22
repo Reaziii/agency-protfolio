@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { defaultheaders } from '../../../utils/axios.common.header';
 import PayPalButtonx from '../../PayPal/PayPalButton';
 import { useSelector } from 'react-redux'
+import { Helmet } from 'react-helmet';
 export const RenewItemDomain = ({itemdetails}) => {
     const translation = useSelector(state=>state.pages.translation);
 
@@ -33,6 +34,9 @@ export const RenewItemDomain = ({itemdetails}) => {
     }
     return (
         <div className="renew-item">
+        <Helmet>
+            <title>renew</title>
+        </Helmet>
             <div className="domain-regi">
                 <p className="renew-title">{translation==='English'?'Renew':'לְחַדֵשׁ'} {itemdetails.name}</p>
 

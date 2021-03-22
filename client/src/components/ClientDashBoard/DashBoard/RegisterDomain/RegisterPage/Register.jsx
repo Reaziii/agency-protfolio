@@ -6,6 +6,7 @@ import Spinner from '../../../../Spinner/Spinner'
 import axios from 'axios'
 import PayPalButtonx from '../../../../PayPal/PayPalButton'
 import Coupon from '../../../../../pages/AddCoupon/Coupon';
+import { Helmet } from 'react-helmet';
 const Register = ({user,domainal,cleardomain}) => {
     if(!localStorage.getItem('auth_token') || !user){
         history.pushState('/login')
@@ -123,6 +124,9 @@ const Register = ({user,domainal,cleardomain}) => {
     }
     return (
         <div className="domain-register">
+        <Helmet>
+            <title>Register Domain</title>
+        </Helmet>
         <p style={{color:'red',textAlign:'center'}}>{noti?noti:<br/>}</p>
 
             <div className="main__xx">

@@ -6,6 +6,7 @@ import axios from 'axios'
 import Spinner from '../../Spinner/Spinner'
 import {connect} from 'react-redux'
 import {user_login} from '../../../Redux/user/user.Actions'
+import { Helmet } from 'react-helmet';
 const backurl = process.env.REACT_APP_BACKEND_URL
 const UserLogin = ({setuser}) => {
     const [username,setUsername] = useState('');
@@ -51,6 +52,10 @@ const UserLogin = ({setuser}) => {
     }
     return (
         <div className="userlogin">
+        <Helmet>
+            <title>User login</title>
+        
+        </Helmet>
             <div className="background_image">
                 <img src={bg} alt="background"/>
             </div>
