@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './DashBoardNav.css'
 import {NavLink, Route, useHistory} from 'react-router-dom'
 import { connect, useSelector } from 'react-redux';
-
+import {$} from 'jquery'
 const DashBoardNav = ({changetr,logot}) => {
     // changetr();
     const user = useSelector(state=>state.user.user);
@@ -39,8 +39,6 @@ const DashBoardNav = ({changetr,logot}) => {
         localStorage.removeItem('auth_token');
         logot();
         history.push('/login')
-
-        
     }
     return (
         <div className='dashop'>

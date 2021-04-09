@@ -18,7 +18,7 @@ const ActiveProducts = () => {
             setActive_Product_list([])
             const activepr = [];
             res.data.map(data=>{
-                if(data.DomainName && data.DomainName.length && data.DomainIsActive){
+                if(data.DomainName && data.DomainName.length && data.DomainIsActive && data.Delivered){
                     activepr.push(
                         {
                             name : "Domain - Registration",
@@ -27,7 +27,7 @@ const ActiveProducts = () => {
                     
                     )
                 }
-                if(data.HostingIsActive){
+                if(data.HostingIsActive && data.Delivered){
                     activepr.push({
 
                         name : data.HostingName+' - Hosting - Registration',
@@ -36,13 +36,13 @@ const ActiveProducts = () => {
 
                     })
                 }
-                if(data.SSL_IsActive){
+                if(data.SSL_IsActive && data.Delivered){
                     activepr.push({
                         name : data.SSL_Issuer_Name,
                         linkname : data.DomainName && data.DomainName.length?data.DomainName:data.UserOwnDomain,
                     })
                 }
-                if(data.Dedicated_IP_IsActive){
+                if(data.Dedicated_IP_IsActive && data.Delivered){
                     activepr.push({
                         name : "Dedicated IP",
                     })
@@ -76,6 +76,15 @@ const ActiveProducts = () => {
                 {translation==='English'?'Your Active Products/Services' : 'המוצרים / שירותים הפעילים שלך'}
             </div>
             <div className='active-product-list'>
+                {active_product_list.length===0?
+                    <div className="individual-item teetx">
+                        no item in active product list
+
+                    </div>
+                
+                
+                
+                :null}
                 {
                     active_product_list.map(({name,link,linkname,active},i)=>(
                         <a href={link}><div className='individual-item'>

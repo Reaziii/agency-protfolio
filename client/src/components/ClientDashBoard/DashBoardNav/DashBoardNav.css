@@ -146,7 +146,8 @@
 }
 
 .okxt{
-    position: absolute;
+    position: fixed;
+
     left: 132px;
     height: 100vh;
     width: 200px;
